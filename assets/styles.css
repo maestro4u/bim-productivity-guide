@@ -131,6 +131,16 @@ a {
   font-weight: 720;
 }
 
+.sidebar a[href^="#civil-resources"],
+.sidebar a[href="#samples"],
+.sidebar a[href="#priority"],
+.sidebar a[href="#plan"] {
+  font-size: 15px;
+  font-weight: 520;
+  line-height: 1.12;
+  color: #8f897f;
+}
+
 .sidebar button {
   width: 100%;
   border: 0;
