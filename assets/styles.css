@@ -28,7 +28,7 @@ body {
   position: relative;
   margin: 0;
   color: var(--ink);
-  background: var(--bg);
+  background: #050712;
   font-family: Pretendard, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
   line-height: 1.65;
   word-break: keep-all;
@@ -40,20 +40,20 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.62;
+  opacity: 0.6;
   background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 96px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.027) 0 1px, transparent 1px 96px),
-    radial-gradient(circle at 20% 10%, rgba(217,119,87,0.22), transparent 26%),
-    radial-gradient(circle at 78% 28%, rgba(139,212,156,0.13), transparent 30%),
-    linear-gradient(130deg, rgba(255,255,255,0.05), transparent 44%);
-  background-size: auto, auto, 120% 120%, 140% 140%, 200% 200%;
-  animation: pageMotion 24s linear infinite;
+    radial-gradient(circle at 22% 18%, rgba(127, 92, 255, 0.18), transparent 24%),
+    radial-gradient(circle at 78% 20%, rgba(42, 112, 255, 0.15), transparent 26%),
+    radial-gradient(circle at 56% 74%, rgba(58, 24, 121, 0.16), transparent 30%),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
+  background-size: auto, auto, auto, 100% 100%, 100% 100%;
+  animation: pageMotion 26s ease-in-out infinite alternate;
 }
 
 @keyframes pageMotion {
-  from { background-position: 0 0, 0 0, 0% 0%, 100% 0%, 0% 50%; }
-  to { background-position: 96px 0, 0 96px, 100% 80%, 0% 100%, 100% 50%; }
+  from { background-position: 0 0, 0 0, 0% 0%, 0 0, 0 0; }
+  to { background-position: 40px 12px, -24px 10px, 8% 6%, 24px 0, 0 24px; }
 }
 
 a {
@@ -71,7 +71,7 @@ a {
   min-height: 58px;
   padding: 0 28px;
   border-bottom: 1px solid var(--line);
-  background: rgba(11, 11, 10, 0.82);
+  background: rgba(5, 7, 18, 0.82);
   backdrop-filter: blur(16px);
 }
 
@@ -290,46 +290,69 @@ a {
 .hero {
   position: relative;
   min-height: calc(100vh - 58px);
-  padding: 68px 24px 42px;
+  padding: 72px 24px 56px;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   border-bottom: 1px solid var(--line);
-  background: rgba(9, 9, 9, 0.34);
+  background:
+    radial-gradient(circle at 50% 16%, rgba(119, 95, 255, 0.14), transparent 26%),
+    radial-gradient(circle at 18% 26%, rgba(68, 94, 255, 0.16), transparent 22%),
+    radial-gradient(circle at 82% 28%, rgba(31, 160, 255, 0.11), transparent 24%),
+    linear-gradient(180deg, rgba(5, 7, 20, 0.98), rgba(5, 7, 20, 0.92));
   text-align: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 24% 18%, rgba(123, 88, 255, 0.28), transparent 22%),
+    radial-gradient(circle at 78% 20%, rgba(32, 110, 255, 0.24), transparent 20%),
+    radial-gradient(circle at 56% 62%, rgba(74, 41, 173, 0.20), transparent 28%),
+    radial-gradient(circle at 48% 78%, rgba(15, 139, 255, 0.10), transparent 28%);
+  filter: blur(72px);
+  opacity: 0.9;
+  animation: glowDrift 18s ease-in-out infinite alternate;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.014) 0 1px, transparent 1px 118px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.01) 0 1px, transparent 1px 118px),
+    linear-gradient(180deg, rgba(255,255,255,0.03), transparent 26%, rgba(0,0,0,0.20));
+  opacity: 0.7;
 }
 
 .motion-bg {
   position: absolute;
-  inset: 0;
+  inset: -12%;
   pointer-events: none;
-  opacity: 0.78;
+  opacity: 0.88;
   background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 84px),
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 84px),
-    linear-gradient(120deg, transparent 0%, rgba(217,119,87,0.17) 32%, transparent 58%),
-    linear-gradient(18deg, transparent 0%, rgba(139,212,156,0.10) 42%, transparent 70%);
-  background-size: auto, auto, 220% 220%, 180% 180%;
-  animation: driftGrid 18s linear infinite, softSweep 12s ease-in-out infinite alternate;
-  filter: blur(0.1px);
+    radial-gradient(circle at 24% 16%, rgba(134, 88, 255, 0.28), transparent 22%),
+    radial-gradient(circle at 76% 18%, rgba(39, 118, 255, 0.22), transparent 20%),
+    radial-gradient(circle at 58% 60%, rgba(88, 49, 200, 0.18), transparent 28%),
+    radial-gradient(circle at 18% 72%, rgba(27, 163, 255, 0.10), transparent 22%);
+  filter: blur(84px);
+  transform: translate3d(0, 0, 0);
+  animation: glowDrift 18s ease-in-out infinite alternate;
 }
 
-.motion-bg::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(9,9,9,0.36) 58%, rgba(9,9,9,0.92) 100%);
-}
-
-@keyframes driftGrid {
-  from { background-position: 0 0, 0 0, 0% 45%, 100% 20%; }
-  to { background-position: 84px 0, 0 84px, 100% 55%, 0% 80%; }
-}
-
-@keyframes softSweep {
-  from { opacity: 0.62; }
-  to { opacity: 0.88; }
+@keyframes glowDrift {
+  from {
+    transform: translate3d(-1.5%, -0.5%, 0) scale(1);
+  }
+  to {
+    transform: translate3d(1.5%, 0.8%, 0) scale(1.04);
+  }
 }
 
 .hero > *:not(.motion-bg) {
@@ -338,7 +361,7 @@ a {
 }
 
 .hero-inner {
-  width: min(980px, 100%);
+  width: min(1080px, 100%);
   margin: 0 auto;
 }
 
@@ -355,8 +378,8 @@ h1 {
   max-width: 980px;
   margin: 22px auto 24px;
   color: var(--ink);
-  font-size: clamp(44px, 5.4vw, 82px);
-  line-height: 1.08;
+  font-size: clamp(52px, 6.5vw, 102px);
+  line-height: 0.95;
   letter-spacing: 0;
   font-weight: 980;
 }
@@ -387,9 +410,9 @@ h3 {
   max-width: 770px;
   margin: 0 auto;
   color: #c8c1b5;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: 650;
-  line-height: 1.75;
+  line-height: 1.7;
 }
 
 .cta-row {
@@ -427,14 +450,15 @@ h3 {
 }
 
 .terminal {
-  width: min(760px, 100%);
-  margin: 48px auto 0;
+  width: min(920px, 100%);
+  margin: 54px auto 0;
   overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.14);
-  border-radius: 14px;
-  background: rgba(18, 18, 18, 0.94);
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 24px;
+  background: rgba(13, 15, 26, 0.56);
+  backdrop-filter: blur(26px);
   color: var(--ink);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.48);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.44);
 }
 
 .terminal-head {
@@ -443,7 +467,7 @@ h3 {
   gap: 8px;
   padding: 12px 16px;
   border-bottom: 1px solid rgba(255,255,255,0.10);
-  background: rgba(36, 36, 35, 0.96);
+  background: rgba(255,255,255,0.045);
 }
 
 .terminal-head span {
@@ -481,10 +505,10 @@ h3 {
 
 pre {
   margin: 0;
-  padding: 26px 30px 30px;
+  padding: 28px 32px 32px;
   overflow-x: auto;
   font-size: 16px;
-  line-height: 2;
+  line-height: 1.95;
 }
 
 pre code {
@@ -508,7 +532,7 @@ pre code {
   display: flex;
   justify-content: center;
   gap: 36px;
-  margin-top: 34px;
+  margin-top: 30px;
   flex-wrap: wrap;
 }
 
@@ -519,7 +543,7 @@ pre code {
 .stats strong {
   display: block;
   color: var(--ink);
-  font-size: 34px;
+  font-size: 30px;
   line-height: 1.1;
 }
 
@@ -757,7 +781,7 @@ th {
   }
 
   h1 {
-    font-size: clamp(38px, 10vw, 64px);
+    font-size: clamp(40px, 11vw, 68px);
   }
 
   .resource-grid,
