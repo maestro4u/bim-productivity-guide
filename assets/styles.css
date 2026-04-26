@@ -220,6 +220,34 @@ a {
   font-weight: 850;
 }
 
+.track-title {
+  margin-left: -14px;
+  color: var(--accent-strong);
+  font-size: clamp(30px, 3.9vw, 50px);
+  line-height: 1.02;
+  letter-spacing: 0;
+  font-weight: 960;
+}
+
+.subsection-title {
+  margin-top: 6px;
+  color: #dcd5c8;
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.05;
+  letter-spacing: 0;
+  font-weight: 430;
+}
+
+.subsection-title + .section-lead,
+.subsection-title + blockquote,
+.subsection-title + .resource-grid,
+.subsection-title + .callout,
+.subsection-title + .sample-list,
+.subsection-title + .steps,
+.subsection-title + .timeline {
+  margin-top: 12px;
+}
+
 .hero {
   position: relative;
   min-height: calc(100vh - 58px);
