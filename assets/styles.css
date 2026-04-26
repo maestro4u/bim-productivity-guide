@@ -248,6 +248,28 @@ a {
   margin-top: 12px;
 }
 
+.placeholder-panel {
+  opacity: 0.82;
+}
+
+.locked-slot-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.locked-slot {
+  min-width: 0;
+  padding: 18px 16px;
+  border: 1px dashed rgba(255,255,255,0.16);
+  border-radius: 12px;
+  background: rgba(255,255,255,0.025);
+  color: #a6a093;
+  font-size: 14px;
+  font-weight: 560;
+}
+
 .hero {
   position: relative;
   min-height: calc(100vh - 58px);
@@ -724,6 +746,7 @@ th {
   .resource-grid,
   .sample-list,
   .curriculum-grid,
+  .locked-slot-grid,
   .timeline {
     grid-template-columns: 1fr;
   }
