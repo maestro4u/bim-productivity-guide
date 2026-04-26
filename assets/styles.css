@@ -149,6 +149,10 @@ a {
   cursor: not-allowed;
 }
 
+.side-track.locked:first-of-type {
+  margin-top: 18px;
+}
+
 .side-track.locked:disabled {
   pointer-events: none;
 }
