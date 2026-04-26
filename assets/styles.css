@@ -40,20 +40,26 @@ body::before {
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.5;
   background:
-    radial-gradient(circle at 22% 18%, rgba(127, 92, 255, 0.18), transparent 24%),
-    radial-gradient(circle at 78% 20%, rgba(42, 112, 255, 0.15), transparent 26%),
-    radial-gradient(circle at 56% 74%, rgba(58, 24, 121, 0.16), transparent 30%),
+    radial-gradient(circle at 20% 18%, rgba(94, 74, 255, 0.11), transparent 22%),
+    radial-gradient(circle at 78% 16%, rgba(28, 94, 220, 0.09), transparent 24%),
+    radial-gradient(circle at 54% 72%, rgba(36, 20, 74, 0.14), transparent 28%),
+    radial-gradient(circle at 34% 66%, rgba(12, 12, 28, 0.32), transparent 22%),
     repeating-linear-gradient(0deg, rgba(255,255,255,0.015) 0 1px, transparent 1px 3px),
     repeating-linear-gradient(90deg, rgba(255,255,255,0.012) 0 1px, transparent 1px 3px);
   background-size: auto, auto, auto, 100% 100%, 100% 100%;
-  animation: pageMotion 26s ease-in-out infinite alternate;
+  animation: pageMotion 22s ease-in-out infinite alternate, pagePulse 9s ease-in-out infinite alternate;
 }
 
 @keyframes pageMotion {
-  from { background-position: 0 0, 0 0, 0% 0%, 0 0, 0 0; }
-  to { background-position: 40px 12px, -24px 10px, 8% 6%, 24px 0, 0 24px; }
+  from { background-position: 20% 18%, 78% 16%, 54% 72%, 0 0, 0 0; }
+  to { background-position: 30% 12%, 70% 22%, 46% 64%, 40px 0, 0 40px; }
+}
+
+@keyframes pagePulse {
+  from { opacity: 0.42; filter: saturate(0.88) blur(0px); }
+  to { opacity: 0.56; filter: saturate(1.02) blur(0.35px); }
 }
 
 a {
@@ -297,10 +303,10 @@ a {
   justify-content: center;
   border-bottom: 1px solid var(--line);
   background:
-    radial-gradient(circle at 50% 16%, rgba(119, 95, 255, 0.14), transparent 26%),
-    radial-gradient(circle at 18% 26%, rgba(68, 94, 255, 0.16), transparent 22%),
-    radial-gradient(circle at 82% 28%, rgba(31, 160, 255, 0.11), transparent 24%),
-    linear-gradient(180deg, rgba(5, 7, 20, 0.98), rgba(5, 7, 20, 0.92));
+    radial-gradient(circle at 50% 16%, rgba(88, 72, 255, 0.10), transparent 24%),
+    radial-gradient(circle at 18% 26%, rgba(41, 68, 185, 0.10), transparent 22%),
+    radial-gradient(circle at 82% 28%, rgba(18, 99, 188, 0.06), transparent 24%),
+    linear-gradient(180deg, rgba(4, 5, 12, 0.99), rgba(4, 5, 12, 0.94));
   text-align: center;
 }
 
@@ -310,13 +316,13 @@ a {
   inset: -10%;
   pointer-events: none;
   background:
-    radial-gradient(circle at 24% 18%, rgba(123, 88, 255, 0.28), transparent 22%),
-    radial-gradient(circle at 78% 20%, rgba(32, 110, 255, 0.24), transparent 20%),
-    radial-gradient(circle at 56% 62%, rgba(74, 41, 173, 0.20), transparent 28%),
-    radial-gradient(circle at 48% 78%, rgba(15, 139, 255, 0.10), transparent 28%);
-  filter: blur(72px);
-  opacity: 0.9;
-  animation: glowDrift 18s ease-in-out infinite alternate;
+    radial-gradient(circle at 24% 18%, rgba(94, 74, 255, 0.16), transparent 22%),
+    radial-gradient(circle at 78% 20%, rgba(34, 101, 214, 0.11), transparent 20%),
+    radial-gradient(circle at 56% 62%, rgba(49, 31, 116, 0.18), transparent 28%),
+    radial-gradient(circle at 48% 78%, rgba(9, 56, 124, 0.06), transparent 28%);
+  filter: blur(96px);
+  opacity: 0.88;
+  animation: glowDrift 16s ease-in-out infinite alternate, glowPulse 8s ease-in-out infinite alternate;
 }
 
 .hero::after {
@@ -337,22 +343,27 @@ a {
   pointer-events: none;
   opacity: 0.88;
   background:
-    radial-gradient(circle at 24% 16%, rgba(134, 88, 255, 0.28), transparent 22%),
-    radial-gradient(circle at 76% 18%, rgba(39, 118, 255, 0.22), transparent 20%),
-    radial-gradient(circle at 58% 60%, rgba(88, 49, 200, 0.18), transparent 28%),
-    radial-gradient(circle at 18% 72%, rgba(27, 163, 255, 0.10), transparent 22%);
-  filter: blur(84px);
+    radial-gradient(circle at 24% 16%, rgba(105, 78, 255, 0.16), transparent 22%),
+    radial-gradient(circle at 76% 18%, rgba(39, 93, 195, 0.11), transparent 20%),
+    radial-gradient(circle at 58% 60%, rgba(56, 36, 134, 0.14), transparent 28%),
+    radial-gradient(circle at 18% 72%, rgba(16, 86, 166, 0.05), transparent 22%);
+  filter: blur(98px);
   transform: translate3d(0, 0, 0);
-  animation: glowDrift 18s ease-in-out infinite alternate;
+  animation: glowDrift 16s ease-in-out infinite alternate, glowPulse 8s ease-in-out infinite alternate;
 }
 
 @keyframes glowDrift {
   from {
-    transform: translate3d(-1.5%, -0.5%, 0) scale(1);
+    transform: translate3d(-2.5%, -1.2%, 0) scale(1);
   }
   to {
-    transform: translate3d(1.5%, 0.8%, 0) scale(1.04);
+    transform: translate3d(2.8%, 1.6%, 0) scale(1.08);
   }
+}
+
+@keyframes glowPulse {
+  from { opacity: 0.58; }
+  to { opacity: 0.82; }
 }
 
 .hero > *:not(.motion-bg) {
