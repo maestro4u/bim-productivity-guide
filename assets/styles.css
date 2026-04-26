@@ -94,9 +94,10 @@ a {
   color: var(--ink);
 }
 
-.shell {
+.guide-shell {
   display: grid;
   grid-template-columns: 292px minmax(0, 1fr);
+  border-top: 1px solid var(--line);
 }
 
 .sidebar {
@@ -140,7 +141,7 @@ a {
   color: var(--ink);
 }
 
-.content {
+.guide-content {
   min-width: 0;
   background: rgba(10, 10, 9, 0.74);
 }
@@ -148,12 +149,14 @@ a {
 .hero {
   position: relative;
   min-height: calc(100vh - 58px);
-  padding: 72px 7.4vw 62px;
+  padding: 68px 24px 42px;
   overflow: hidden;
-  display: grid;
-  align-content: start;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-bottom: 1px solid var(--line);
   background: rgba(9, 9, 9, 0.34);
+  text-align: center;
 }
 
 .motion-bg {
@@ -193,6 +196,11 @@ a {
   z-index: 1;
 }
 
+.hero-inner {
+  width: min(980px, 100%);
+  margin: 0 auto;
+}
+
 .eyebrow,
 .section-index,
 .rank {
@@ -204,16 +212,20 @@ a {
 
 h1 {
   max-width: 980px;
-  margin: 22px 0 26px;
+  margin: 22px auto 24px;
   color: var(--ink);
-  font-size: clamp(50px, 6.4vw, 116px);
-  line-height: 1.02;
+  font-size: clamp(44px, 5.4vw, 82px);
+  line-height: 1.08;
   letter-spacing: 0;
   font-weight: 980;
 }
 
 h1 span {
   display: block;
+}
+
+.accent-title {
+  color: var(--accent-strong);
 }
 
 h2 {
@@ -232,6 +244,7 @@ h3 {
 
 .lead {
   max-width: 770px;
+  margin: 0 auto;
   color: #c8c1b5;
   font-size: 21px;
   font-weight: 650;
@@ -240,6 +253,7 @@ h3 {
 
 .cta-row {
   display: flex;
+  justify-content: center;
   gap: 12px;
   flex-wrap: wrap;
   margin-top: 28px;
@@ -273,7 +287,7 @@ h3 {
 
 .terminal {
   width: min(760px, 100%);
-  margin-top: 48px;
+  margin: 48px auto 0;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.14);
   border-radius: 14px;
@@ -351,6 +365,7 @@ pre code {
 
 .stats {
   display: flex;
+  justify-content: center;
   gap: 36px;
   margin-top: 34px;
   flex-wrap: wrap;
@@ -568,7 +583,7 @@ th {
 }
 
 @media (max-width: 980px) {
-  .shell {
+  .guide-shell {
     display: block;
   }
 
@@ -600,7 +615,7 @@ th {
   }
 
   h1 {
-    font-size: clamp(42px, 12vw, 72px);
+    font-size: clamp(38px, 10vw, 64px);
   }
 
   .resource-grid,
