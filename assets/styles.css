@@ -149,13 +149,14 @@ a {
   font: inherit;
 }
 
-.sidebar a.side-track.active {
+#guide .sidebar a.side-track.active {
   background: rgba(241, 153, 111, 0.12);
   color: var(--accent-strong) !important;
   font-weight: 900;
+  border: 1px solid rgba(241, 153, 111, 0.24);
 }
 
-.sidebar a.side-track.active:hover {
+#guide .sidebar a.side-track.active:hover {
   background: rgba(241, 153, 111, 0.16);
   color: var(--accent-strong) !important;
 }
