@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Civil 3D + Dynamo 업무생산성 가이드</title>
+    <meta
+      name="description"
+      content="토목엔지니어링 부서의 Civil 3D + Dynamo 학습, 샘플 그래프 활용, 교육 실행계획을 정리한 웹 가이드"
+    />
+    <link rel="stylesheet" href="./assets/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="처음으로">▸ BIM Productivity</a>
+      <nav class="toplinks" aria-label="상단 링크">
+        <a href="#resources">학습자료</a>
+        <a href="#samples">샘플</a>
+        <a href="#plan">실행계획</a>
+      </nav>
+    </header>
+
+    <main id="top" class="shell">
+      <aside class="sidebar" aria-label="문서 목차">
+        <div class="side-title">Civil 3D + Dynamo</div>
+        <a href="#summary">00 요약</a>
+        <a href="#resources">01 학습자료</a>
+        <a href="#samples">02 샘플 그래프</a>
+        <a href="#priority">03 실습 우선순위</a>
+        <a href="#plan">04 4주 실행계획</a>
+        <a href="#roles">05 역할 분담</a>
+      </aside>
+
+      <section class="content">
+        <section class="hero" id="summary">
+          <div class="eyebrow">토목엔지니어링 업무생산성 전환</div>
+          <h1>Civil 3D + Dynamo로 반복 설계업무 줄이기</h1>
+          <p class="lead">
+            AutoCAD 2D 중심 업무에서 Civil 3D 데이터 기반 업무로 전환하기 위한
+            기초 학습자료, 샘플 그래프 활용법, 4주 실행계획을 정리했습니다.
+          </p>
+          <div class="terminal" aria-label="도입 방향 요약">
+            <div class="terminal-head">
+              <span></span><span></span><span></span>
+              <strong>workflow</strong>
+            </div>
+            <pre><code>$ start dynamo-transition
+✓ 공식 도움말로 실행 위치 확인
+✓ Dynamo Primer로 노드·그래프 이해
+✓ Civil 3D 2027 샘플 그래프 실행
+✓ 반복업무 1개를 Dynamo Player로 자동화</code></pre>
+          </div>
+          <div class="stats">
+            <div><strong>4주</strong><span>기초 실행계획</span></div>
+            <div><strong>7개</strong><span>초보자 우선 샘플</span></div>
+            <div><strong>3~5명</strong><span>챔피언 운영</span></div>
+          </div>
+        </section>
+
+        <section class="panel" id="resources">
+          <div class="section-index">01</div>
+          <h2>기초 학습자료 추천</h2>
+          <div class="resource-grid">
+            <article>
+              <span class="rank">1순위</span>
+              <h3>Autodesk Civil 3D용 Dynamo 공식 도움말</h3>
+              <p>Civil 3D 안에서 Dynamo 실행 위치, 샘플 그래프 위치, Dynamo Player 흐름을 확인합니다.</p>
+              <a href="https://help.autodesk.com/cloudhelp/2027/KOR/Civil3D-Dynamo/files/Civil3D_Dynamo_About_Dynamo_for_Autodesk_Civil_3D_html.html">공식 도움말 보기</a>
+            </article>
+            <article>
+              <span class="rank">2순위</span>
+              <h3>Dynamo Primer - Civil 3D</h3>
+              <p>노드, 와이어, 리스트, Civil 3D 객체 연결 개념을 체계적으로 익힙니다.</p>
+              <a href="https://primer2.dynamobim.org/dynamo-for-civil-3d">Primer 보기</a>
+            </article>
+            <article>
+              <span class="rank">3순위</span>
+              <h3>Autodesk University Hands-on</h3>
+              <p>AutoCAD와 Civil 3D 사용자를 위한 초급 실습형 강의입니다.</p>
+              <a href="https://www.autodesk.com/autodesk-university/class/Dynamo-for-Civil-3D-Hands-on-for-Beginners-2024">강의 보기</a>
+            </article>
+          </div>
+        </section>
+
+        <section class="panel" id="samples">
+          <div class="section-index">02</div>
+          <h2>Civil 3D 2027 샘플 그래프 활용</h2>
+          <p class="section-lead">
+            Autodesk 2027 KOR 도움말의 샘플은 AutoCAD 객체 정리, Python 데이터 입출력,
+            Civil 3D 설계 객체 자동화, Dynamo Player용 반복작업으로 나눠 활용합니다.
+          </p>
+          <div class="sample-list">
+            <div>
+              <h3>AutoCAD 객체와 특성 세트</h3>
+              <p>블록, 폴리선, 도면층, 속성값을 정리해 2D 도면 자산을 자동화합니다.</p>
+              <ul>
+                <li><code>AutoCAD_AddPropertySetByDefinition.dyn</code></li>
+                <li><code>AutoCAD_BufferAroundObject.dyn</code></li>
+                <li><code>AutoCAD_SetBlockElevationByAttribute.dyn</code></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Civil 3D 설계 객체</h3>
+              <p>선형, 코리더, 형상선, 지표면, 관망, 코리더 솔리드를 직접 다룹니다.</p>
+              <ul>
+                <li><code>Civil3D_CreateSurfaceFromCSV.dyn</code></li>
+                <li><code>Civil3D_ExportCorridorFeatureLines.dyn</code></li>
+                <li><code>Civil3D_ReadAndWriteSubassemblyParameters.dyn</code></li>
+              </ul>
+            </div>
+            <div>
+              <h3>Dynamo Player 반복작업</h3>
+              <p>부서원이 버튼처럼 실행할 수 있는 입문용 자동화입니다.</p>
+              <ul>
+                <li><code>Calculate Total Length of Selected Lines.dyn</code></li>
+                <li><code>Hatch Areas Table</code></li>
+                <li><code>Update Style for Multiple Objects.dyn</code></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" id="priority">
+          <div class="section-index">03</div>
+          <h2>초보자 실습 우선순위</h2>
+          <ol class="steps">
+            <li><strong>총연장 계산</strong><span>선택 라인워크 길이 계산으로 즉시 효과 확인</span></li>
+            <li><strong>해치 면적표</strong><span>2D 면적 산출 자동화</span></li>
+            <li><strong>다중 Offset</strong><span>기존 AutoCAD 사용자가 이해하기 쉬운 자동화</span></li>
+            <li><strong>CSV → TIN 지표면</strong><span>외부 좌표 데이터를 Civil 3D 객체로 전환</span></li>
+            <li><strong>2D Linework Drape</strong><span>2D 도면을 3D 지형 위로 전환</span></li>
+          </ol>
+        </section>
+
+        <section class="panel" id="plan">
+          <div class="section-index">04</div>
+          <h2>4주 교육 및 실행계획</h2>
+          <div class="timeline">
+            <div><strong>1주차</strong><p>Dynamo 실행 위치 확인, 공식 도움말과 소개 영상으로 개념 잡기</p></div>
+            <div><strong>2주차</strong><p>노드, 와이어, 입력·출력, 리스트 등 그래프 기본 구조 학습</p></div>
+            <div><strong>3주차</strong><p>Civil 3D 설치 샘플 그래프 실행, Dynamo Player 흐름 확인</p></div>
+            <div><strong>4주차</strong><p>부서 반복업무 1개를 선택해 버튼형 자동화로 제작</p></div>
+          </div>
+        </section>
+
+        <section class="panel" id="roles">
+          <div class="section-index">05</div>
+          <h2>역할 분담</h2>
+          <table>
+            <thead>
+              <tr><th>역할</th><th>책임</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>부서장</td><td>전환 목표 설정, 우선업무 선정, 성과 검토</td></tr>
+              <tr><td>Civil 3D 챔피언</td><td>샘플 분석, 그래프 수정, 실습자료 작성</td></tr>
+              <tr><td>데이터/공사비 챔피언</td><td>CSV, Excel, 수량표 연계</td></tr>
+              <tr><td>일반 부서원</td><td>Dynamo Player 실행, 오류 피드백</td></tr>
+            </tbody>
+          </table>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>
+
