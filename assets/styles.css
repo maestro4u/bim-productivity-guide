@@ -25,12 +25,35 @@ html {
 }
 
 body {
+  position: relative;
   margin: 0;
   color: var(--ink);
   background: var(--bg);
   font-family: Pretendard, Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
   line-height: 1.65;
   word-break: keep-all;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.62;
+  background:
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.035) 0 1px, transparent 1px 96px),
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.027) 0 1px, transparent 1px 96px),
+    radial-gradient(circle at 20% 10%, rgba(217,119,87,0.22), transparent 26%),
+    radial-gradient(circle at 78% 28%, rgba(139,212,156,0.13), transparent 30%),
+    linear-gradient(130deg, rgba(255,255,255,0.05), transparent 44%);
+  background-size: auto, auto, 120% 120%, 140% 140%, 200% 200%;
+  animation: pageMotion 24s linear infinite;
+}
+
+@keyframes pageMotion {
+  from { background-position: 0 0, 0 0, 0% 0%, 100% 0%, 0% 50%; }
+  to { background-position: 96px 0, 0 96px, 100% 80%, 0% 100%, 100% 50%; }
 }
 
 a {
@@ -119,6 +142,7 @@ a {
 
 .content {
   min-width: 0;
+  background: rgba(10, 10, 9, 0.74);
 }
 
 .hero {
@@ -129,7 +153,7 @@ a {
   display: grid;
   align-content: start;
   border-bottom: 1px solid var(--line);
-  background: #090909;
+  background: rgba(9, 9, 9, 0.34);
 }
 
 .motion-bg {
@@ -351,13 +375,17 @@ pre code {
 
 .panel {
   padding: 86px 7.4vw;
-  color: var(--ink-dark);
-  border-bottom: 1px solid var(--line-dark);
-  background: var(--paper);
+  color: var(--ink);
+  border-bottom: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(16,16,15,0.92), rgba(13,13,12,0.92)),
+    rgba(13,13,12,0.92);
 }
 
 .panel:nth-of-type(even) {
-  background: #f4f1e9;
+  background:
+    linear-gradient(180deg, rgba(18,18,17,0.94), rgba(12,12,11,0.94)),
+    rgba(13,13,12,0.94);
 }
 
 .section-head {
@@ -368,7 +396,7 @@ pre code {
 
 .panel .section-index,
 .panel .rank {
-  color: #bd5c42;
+  color: var(--accent-strong);
 }
 
 .badge {
@@ -377,7 +405,7 @@ pre code {
   min-height: 24px;
   padding: 0 9px;
   border-radius: 999px;
-  background: #1a1a19;
+  background: rgba(255,255,255,0.12);
   color: #f4ede3;
   font-size: 12px;
   font-weight: 850;
@@ -390,13 +418,13 @@ blockquote,
   padding: 16px 18px;
   border-left: 4px solid var(--accent);
   border-radius: 0 10px 10px 0;
-  background: rgba(217, 119, 87, 0.10);
-  color: #443f38;
+  background: rgba(217, 119, 87, 0.13);
+  color: #eee5da;
 }
 
 .callout p {
   margin: 6px 0 0;
-  color: var(--muted-dark);
+  color: #c7bfb3;
 }
 
 .callout.success {
@@ -406,7 +434,7 @@ blockquote,
 
 .section-lead {
   max-width: 780px;
-  color: var(--muted-dark);
+  color: #bcb4a9;
   font-size: 18px;
 }
 
@@ -421,36 +449,51 @@ blockquote,
 article,
 .sample-list > div {
   padding: 24px;
-  border: 1px solid var(--line-dark);
+  border: 1px solid rgba(255,255,255,0.13);
   border-radius: 14px;
-  background: rgba(255,255,255,0.56);
+  background: rgba(255,255,255,0.055);
   transition: transform 180ms ease, box-shadow 180ms ease;
+  min-width: 0;
 }
 
 article:hover,
 .sample-list > div:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 34px rgba(33, 26, 18, 0.08);
+  background: rgba(255,255,255,0.075);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
 }
 
 article p,
 .sample-list p {
-  color: var(--muted-dark);
+  color: #bcb4a9;
 }
 
 article a {
   display: inline-block;
   margin-top: 10px;
-  color: #1f5b53;
+  color: var(--accent-strong);
   font-weight: 850;
 }
 
 code {
   padding: 2px 6px;
   border-radius: 6px;
-  background: #eae3d6;
+  background: rgba(255,255,255,0.10);
+  color: #efe7dc;
   font-family: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
   font-size: 0.92em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.sample-list ul {
+  padding-left: 20px;
+}
+
+.sample-list li {
+  margin: 9px 0;
+  min-width: 0;
 }
 
 .steps {
@@ -465,7 +508,7 @@ code {
   grid-template-columns: 240px 1fr;
   gap: 20px;
   padding: 18px 0;
-  border-bottom: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line);
 }
 
 .steps strong {
@@ -473,7 +516,7 @@ code {
 }
 
 .steps span {
-  color: var(--muted-dark);
+  color: #bcb4a9;
 }
 
 .timeline {
@@ -486,11 +529,11 @@ code {
   padding: 22px;
   border-top: 4px solid var(--accent);
   border-radius: 0 0 12px 12px;
-  background: rgba(255,255,255,0.58);
+  background: rgba(255,255,255,0.06);
 }
 
 .timeline p {
-  color: var(--muted-dark);
+  color: #bcb4a9;
 }
 
 table {
@@ -498,20 +541,20 @@ table {
   border-collapse: collapse;
   overflow: hidden;
   border-radius: 12px;
-  background: rgba(255,255,255,0.62);
+  background: rgba(255,255,255,0.06);
 }
 
 th,
 td {
   padding: 15px 16px;
-  border-bottom: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: top;
 }
 
 th {
-  background: rgba(0,0,0,0.04);
-  color: #1f5b53;
+  background: rgba(255,255,255,0.07);
+  color: var(--accent-strong);
 }
 
 @media (prefers-reduced-motion: reduce) {
