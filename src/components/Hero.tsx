@@ -26,56 +26,76 @@ export function Hero() {
       </header>
 
       <div className="hero-inner">
-        <p className="hero-eyebrow">▸ Civil 3D + Dynamo 업무생산성 가이드</p>
-        <h1 className="hero-title">
-          <span className="hero-title-accent">BIM으로</span>
-          <span>반복 설계업무 줄이기</span>
-        </h1>
-        <p className="hero-lead">
-          AutoCAD 2D 중심 업무에서 Civil 3D 데이터 기반 업무로 전환하기 위한 기초 학습자료,
-          샘플 그래프 활용법, 4주 실행계획을 정리했습니다.
-        </p>
+        <div className="hero-copy">
+          <p className="hero-eyebrow">▸ Civil 3D + Dynamo 업무생산성 가이드</p>
+          <h1 className="hero-title">
+            <span className="hero-title-accent">반복 설계업무</span>
+            <span>를 줄이는 BIM 운영판</span>
+          </h1>
+          <p className="hero-lead">
+            AutoCAD 2D 중심 업무에서 Civil 3D 데이터 기반 업무로 전환하기 위한 기초 학습자료,
+            샘플 그래프 활용법, 4주 실행계획을 정리했습니다.
+          </p>
 
-        <div className="hero-actions">
-          <Link className="button button-primary" href="#guide">
-            가이드 시작 <span aria-hidden="true">→</span>
-          </Link>
-          <a
-            className="button button-secondary"
-            href="https://help.autodesk.com/cloudhelp/2027/KOR/Civil3D-Dynamo/files/Civil3D_Dynamo_About_Dynamo_for_Autodesk_Civil_3D_html.html"
-            target="_blank"
-            rel="noreferrer"
-          >
-            공식 문서
-          </a>
-        </div>
-
-        <div className="terminal-card" aria-label="도입 방향 요약">
-          <div className="terminal-head">
-            <span className="dot dot-red" />
-            <span className="dot dot-yellow" />
-            <span className="dot dot-green" />
-            <strong>Terminal</strong>
-            <button type="button">Copy</button>
+          <div className="hero-actions">
+            <Link className="button button-primary" href="#guide">
+              가이드 시작 <span aria-hidden="true">→</span>
+            </Link>
+            <a
+              className="button button-secondary"
+              href="https://help.autodesk.com/cloudhelp/2027/KOR/Civil3D-Dynamo/files/Civil3D_Dynamo_About_Dynamo_for_Autodesk_Civil_3D_html.html"
+              target="_blank"
+              rel="noreferrer"
+            >
+              공식 문서
+            </a>
           </div>
-          <pre>
-            <code>
-              <span className="prompt">$</span> start dynamo-transition{"\n"}
-              <span className="ok">✓</span> 공식 도움말로 실행 위치 확인{"\n"}
-              <span className="ok">✓</span> Dynamo Primer로 노드·그래프 이해{"\n"}
-              <span className="ok">✓</span> Civil 3D 2027 샘플 그래프 실행{"\n"}
-              <span className="ok">✓</span> 반복업무 1개를 Dynamo Player로 자동화
-            </code>
-          </pre>
         </div>
 
-        <div className="hero-stats">
-          {quickStats.map((item) => (
-            <div key={item.label} className="hero-stat">
-              <strong>{item.value}</strong>
-              <span>{item.label}</span>
+        <div className="hero-aside">
+          <div className="mission-card">
+            <span className="mission-label">현재 작성 축</span>
+            <strong>Civil 3D + Dynamo</strong>
+            <p>첫 번째 축만 실제 내용으로 채우고 나머지는 다음 단계로 남겨둔 상태입니다.</p>
+          </div>
+          <div className="mission-grid">
+            <div>
+              <span>활성</span>
+              <strong>01-04</strong>
+              <p>학습자료 / 샘플 / 우선순위 / 4주계획</p>
             </div>
-          ))}
+            <div>
+              <span>잠금</span>
+              <strong>02축</strong>
+              <p>Revit, Navisworks는 자리만 선점</p>
+            </div>
+          </div>
+          <div className="terminal-card" aria-label="도입 방향 요약">
+            <div className="terminal-head">
+              <span className="dot dot-red" />
+              <span className="dot dot-yellow" />
+              <span className="dot dot-green" />
+              <strong>Terminal</strong>
+              <button type="button">Copy</button>
+            </div>
+            <pre>
+              <code>
+                <span className="prompt">$</span> start dynamo-transition{"\n"}
+                <span className="ok">✓</span> 공식 도움말로 실행 위치 확인{"\n"}
+                <span className="ok">✓</span> Dynamo Primer로 노드·그래프 이해{"\n"}
+                <span className="ok">✓</span> Civil 3D 2027 샘플 그래프 실행{"\n"}
+                <span className="ok">✓</span> 반복업무 1개를 Dynamo Player로 자동화
+              </code>
+            </pre>
+          </div>
+          <div className="hero-stats">
+            {quickStats.map((item) => (
+              <div key={item.label} className="hero-stat">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

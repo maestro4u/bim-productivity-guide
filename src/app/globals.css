@@ -1,18 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #050712;
-  --bg-soft: #0c0f1d;
-  --surface: rgba(15, 18, 32, 0.7);
-  --surface-strong: rgba(16, 19, 32, 0.92);
-  --ink: #f2efe7;
-  --ink-dim: #c9c2b6;
-  --muted: #8e897e;
-  --line: rgba(255, 255, 255, 0.1);
-  --line-strong: rgba(255, 255, 255, 0.16);
-  --accent: #f1996f;
-  --accent-strong: #f5ad86;
-  --shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  --bg: #04050a;
+  --bg-soft: #090b14;
+  --surface: rgba(12, 14, 24, 0.78);
+  --surface-strong: rgba(13, 16, 28, 0.96);
+  --ink: #f7f2e8;
+  --ink-dim: #cfc5b5;
+  --muted: #90897d;
+  --line: rgba(255, 255, 255, 0.08);
+  --line-strong: rgba(255, 255, 255, 0.14);
+  --accent: #f28b58;
+  --accent-strong: #ffb07e;
+  --shadow: 0 34px 90px rgba(0, 0, 0, 0.68);
 }
 
 @theme inline {
@@ -30,10 +30,10 @@ body {
   min-height: 100vh;
   overflow-x: clip;
   background:
-    radial-gradient(circle at 50% 14%, rgba(255, 148, 101, 0.07), transparent 18%),
-    radial-gradient(circle at 18% 45%, rgba(255, 79, 51, 0.12), transparent 26%),
-    radial-gradient(circle at 82% 54%, rgba(255, 96, 66, 0.08), transparent 20%),
-    linear-gradient(180deg, #050712 0%, #04050b 100%);
+    radial-gradient(circle at 24% 18%, rgba(255, 93, 64, 0.14), transparent 16%),
+    radial-gradient(circle at 72% 22%, rgba(255, 143, 99, 0.08), transparent 20%),
+    radial-gradient(circle at 56% 54%, rgba(255, 108, 74, 0.08), transparent 26%),
+    linear-gradient(180deg, #04050a 0%, #020308 100%);
   color: var(--ink);
   font-family:
     Inter, Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont,
@@ -49,13 +49,13 @@ body::before {
   z-index: -2;
   pointer-events: none;
   background:
-    linear-gradient(90deg, transparent 0%, rgba(255, 94, 58, 0.05) 12%, rgba(255, 94, 58, 0.28) 24%, rgba(255, 94, 58, 0.08) 36%, transparent 52%),
-    radial-gradient(ellipse at 50% 50%, rgba(255, 108, 72, 0.08), transparent 58%),
-    radial-gradient(ellipse at 20% 30%, rgba(255, 119, 88, 0.06), transparent 26%),
-    radial-gradient(ellipse at 82% 62%, rgba(255, 126, 94, 0.05), transparent 30%);
-  filter: blur(88px) saturate(120%);
-  opacity: 0.7;
-  animation: band-sweep 14s linear infinite, glow-float 18s ease-in-out infinite alternate;
+    linear-gradient(90deg, transparent 0%, rgba(255, 85, 50, 0.08) 12%, rgba(255, 85, 50, 0.34) 26%, rgba(255, 85, 50, 0.12) 38%, transparent 54%),
+    radial-gradient(ellipse at 50% 50%, rgba(255, 92, 58, 0.08), transparent 56%),
+    radial-gradient(ellipse at 18% 36%, rgba(255, 140, 100, 0.05), transparent 26%),
+    radial-gradient(ellipse at 82% 62%, rgba(255, 126, 94, 0.06), transparent 30%);
+  filter: blur(96px) saturate(122%);
+  opacity: 0.76;
+  animation: band-sweep 16s linear infinite, glow-float 20s ease-in-out infinite alternate;
 }
 
 body::after {
@@ -65,11 +65,11 @@ body::after {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.03), transparent 68%);
-  background-size: 64px 64px, 64px 64px, 100% 100%;
-  opacity: 0.18;
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 68%);
+  background-size: 72px 72px, 72px 72px, 100% 100%;
+  opacity: 0.14;
   mix-blend-mode: soft-light;
 }
 
@@ -111,12 +111,26 @@ select {
   }
 }
 
+@keyframes hero-band {
+  0% {
+    transform: translateX(-14%) translateY(-1%) scale(1.02);
+  }
+
+  50% {
+    transform: translateX(0%) translateY(1%) scale(1.08);
+  }
+
+  100% {
+    transform: translateX(14%) translateY(0%) scale(1.03);
+  }
+}
+
 @layer components {
   .hero-shell {
     background:
-      radial-gradient(circle at 50% 42%, rgba(255, 103, 70, 0.18), transparent 16%),
-      radial-gradient(circle at 22% 16%, rgba(255, 255, 255, 0.035), transparent 18%),
-      linear-gradient(180deg, #050712 0%, #04050b 100%);
+      radial-gradient(circle at 50% 42%, rgba(255, 103, 70, 0.2), transparent 14%),
+      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.03), transparent 15%),
+      linear-gradient(180deg, #04050a 0%, #020308 100%);
   }
 
   .hero-shell::before {
@@ -126,11 +140,11 @@ select {
     z-index: -1;
     pointer-events: none;
     background:
-      linear-gradient(90deg, transparent 0%, rgba(255, 84, 47, 0.08) 16%, rgba(255, 84, 47, 0.42) 34%, rgba(255, 110, 75, 0.12) 48%, transparent 64%),
+      linear-gradient(90deg, transparent 0%, rgba(255, 84, 47, 0.1) 12%, rgba(255, 84, 47, 0.46) 28%, rgba(255, 110, 75, 0.16) 46%, transparent 64%),
       radial-gradient(circle at 50% 50%, rgba(255, 92, 58, 0.14), transparent 22%);
-    filter: blur(96px) saturate(120%);
-    opacity: 0.82;
-    animation: hero-band 12s linear infinite;
+    filter: blur(104px) saturate(118%);
+    opacity: 0.9;
+    animation: hero-band 10s linear infinite;
   }
 
   .hero-shell::after {
@@ -159,17 +173,21 @@ select {
   }
 
   .hero-inner {
-    @apply mx-auto flex w-full max-w-6xl flex-col items-center px-6 pb-16 pt-20 text-center sm:px-8 lg:px-10;
+    @apply mx-auto grid w-full max-w-7xl gap-10 px-6 pb-16 pt-18 sm:px-8 lg:grid-cols-[1.08fr_minmax(380px,0.92fr)] lg:gap-12 lg:px-10;
+  }
+
+  .hero-copy {
+    @apply flex flex-col justify-center text-left;
   }
 
   .topbar {
-    @apply sticky top-0 z-30 flex min-h-[58px] items-center justify-between border-b px-6 backdrop-blur-xl sm:px-8 lg:px-10;
-    border-color: var(--line);
-    background: rgba(5, 7, 18, 0.78);
+    @apply sticky top-0 z-30 flex min-h-[64px] items-center justify-between border-b px-6 backdrop-blur-2xl sm:px-8 lg:px-10;
+    border-color: rgba(255, 255, 255, 0.09);
+    background: rgba(4, 5, 10, 0.9);
   }
 
   .brand {
-    @apply text-[17px] font-black tracking-[-0.01em];
+    @apply text-[18px] font-black tracking-[-0.02em];
   }
 
   .toplinks {
@@ -181,12 +199,13 @@ select {
   }
 
   .hero-eyebrow {
-    @apply mb-5 text-sm font-extrabold tracking-[-0.01em] sm:text-[15px];
+    @apply mb-5 text-sm font-extrabold tracking-[0.08em] sm:text-[14px];
     color: var(--accent-strong);
+    text-transform: uppercase;
   }
 
   .hero-title {
-    @apply flex max-w-[12ch] flex-col text-balance text-[clamp(3.4rem,8vw,6.6rem)] font-black leading-[0.92] tracking-[-0.05em];
+    @apply flex max-w-[10.5ch] flex-col text-balance text-[clamp(4.2rem,8.8vw,7.8rem)] font-black leading-[0.88] tracking-[-0.07em];
   }
 
   .hero-title-accent {
@@ -194,22 +213,22 @@ select {
   }
 
   .hero-lead {
-    @apply mt-8 max-w-3xl text-balance text-[clamp(1.02rem,2vw,1.22rem)] font-semibold leading-8 text-[color:var(--ink-dim)];
+    @apply mt-8 max-w-2xl text-balance text-[clamp(1rem,1.9vw,1.18rem)] font-semibold leading-8 text-[color:var(--ink-dim)];
   }
 
   .hero-actions {
-    @apply mt-10 flex flex-wrap items-center justify-center gap-4;
+    @apply mt-10 flex flex-wrap items-center justify-start gap-4;
   }
 
   .button {
-    @apply inline-flex items-center justify-center gap-2 rounded-2xl border px-6 py-4 text-[17px] font-extrabold transition duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-[18px] border px-6 py-4 text-[16px] font-extrabold transition duration-200;
   }
 
   .button-primary {
-    background: var(--accent);
+    background: linear-gradient(180deg, #ff9a65 0%, #f17c49 100%);
     color: #190f0b;
-    box-shadow: 0 24px 40px rgba(241, 153, 111, 0.18);
-    border-color: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 26px 44px rgba(241, 153, 111, 0.28);
+    border-color: rgba(255, 255, 255, 0.03);
   }
 
   .button-primary:hover {
@@ -218,8 +237,8 @@ select {
   }
 
   .button-secondary {
-    border-color: rgba(255, 255, 255, 0.16);
-    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
     color: var(--ink);
   }
 
@@ -229,9 +248,9 @@ select {
   }
 
   .terminal-card {
-    @apply mt-14 w-full max-w-4xl rounded-[24px] border p-0 text-left shadow-2xl backdrop-blur-2xl;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(17, 19, 29, 0.74);
+    @apply mt-8 w-full rounded-[28px] border p-0 text-left shadow-2xl backdrop-blur-2xl;
+    border-color: rgba(255, 255, 255, 0.11);
+    background: rgba(10, 12, 19, 0.82);
     box-shadow: var(--shadow);
   }
 
@@ -274,18 +293,67 @@ select {
   }
 
   .hero-stats {
-    @apply mt-11 flex flex-wrap justify-center gap-4;
+    @apply mt-6 flex flex-wrap justify-start gap-4;
   }
 
   .hero-stat {
-    @apply min-w-[140px] rounded-2xl border px-5 py-4 text-left;
+    @apply min-w-[140px] rounded-[18px] border px-5 py-4 text-left;
+    border-color: rgba(255, 255, 255, 0.09);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .hero-stat strong {
+    @apply block text-[22px] font-black tracking-[-0.03em];
+    color: #ffab78;
+  }
+
+  .hero-aside {
+    @apply flex flex-col gap-4;
+  }
+
+  .mission-card {
+    @apply rounded-[28px] border p-6;
+    border-color: rgba(255, 154, 113, 0.22);
+    background: linear-gradient(180deg, rgba(255, 154, 113, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
+  }
+
+  .mission-label {
+    @apply inline-flex rounded-full border px-3 py-1 text-[12px] font-black tracking-[0.08em];
+    border-color: rgba(255, 255, 255, 0.12);
+    color: var(--accent-strong);
+    text-transform: uppercase;
+  }
+
+  .mission-card strong {
+    @apply mt-4 block text-[28px] font-black leading-[1.02] tracking-[-0.04em];
+  }
+
+  .mission-card p {
+    @apply mt-3 text-[15px] leading-7 text-[color:var(--ink-dim)];
+  }
+
+  .mission-grid {
+    @apply grid gap-3 sm:grid-cols-2;
+  }
+
+  .mission-grid > div {
+    @apply rounded-[22px] border p-5;
     border-color: rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.035);
   }
 
-  .hero-stat strong {
-    @apply block text-[22px] font-black tracking-[-0.02em];
+  .mission-grid span {
+    @apply text-[12px] font-black tracking-[0.08em] uppercase;
     color: var(--accent-strong);
+  }
+
+  .mission-grid strong {
+    @apply mt-2 block text-[24px] font-black tracking-[-0.04em];
+  }
+
+  .mission-grid p {
+    @apply mt-2 text-[14px] leading-6 text-[color:var(--ink-dim)];
   }
 
   .hero-stat span {
@@ -293,29 +361,29 @@ select {
   }
 
   .guide-shell {
-    @apply grid border-t lg:grid-cols-[292px_minmax(0,1fr)];
-    border-color: var(--line);
+    @apply grid border-t lg:grid-cols-[308px_minmax(0,1fr)];
+    border-color: rgba(255, 255, 255, 0.09);
   }
 
   .sidebar {
-    @apply sticky top-[58px] h-[calc(100svh-58px)] overflow-y-auto border-b px-6 py-8 lg:border-b-0 lg:border-r lg:px-8 lg:py-10;
-    border-color: var(--line);
-    background: rgba(7, 9, 16, 0.94);
+    @apply sticky top-[64px] h-[calc(100svh-64px)] overflow-y-auto border-b px-6 py-8 lg:border-b-0 lg:border-r lg:px-8 lg:py-10;
+    border-color: rgba(255, 255, 255, 0.08);
+    background: linear-gradient(180deg, rgba(6, 7, 12, 0.96) 0%, rgba(10, 11, 18, 0.98) 100%);
   }
 
   .guide-content {
     @apply min-w-0;
-    background: rgba(5, 7, 18, 0.72);
+    background: linear-gradient(180deg, rgba(5, 7, 16, 0.74) 0%, rgba(6, 7, 12, 0.96) 100%);
   }
 
   .side-track {
-    @apply rounded-2xl px-4 py-3 text-[17px] font-extrabold tracking-[-0.01em];
+    @apply rounded-[20px] px-4 py-3 text-[17px] font-extrabold tracking-[-0.02em];
   }
 
   .side-track.active {
     color: var(--accent-strong);
-    background: rgba(241, 153, 111, 0.1);
-    border: 1px solid rgba(241, 153, 111, 0.2);
+    background: rgba(241, 153, 111, 0.12);
+    border: 1px solid rgba(241, 153, 111, 0.26);
   }
 
   .side-nav {
@@ -337,8 +405,8 @@ select {
   }
 
   .panel {
-    @apply border-t px-6 py-12 sm:px-8 lg:px-10;
-    border-color: rgba(255, 255, 255, 0.08);
+    @apply border-t px-6 py-14 sm:px-8 lg:px-10;
+    border-color: rgba(255, 255, 255, 0.09);
   }
 
   .section-head {
@@ -346,7 +414,7 @@ select {
   }
 
   .section-index {
-    @apply text-[clamp(2rem,2.8vw,2.8rem)] font-black tracking-[-0.06em];
+    @apply text-[clamp(2.1rem,2.8vw,3rem)] font-black tracking-[-0.06em];
     color: var(--accent-strong);
   }
 
@@ -357,12 +425,12 @@ select {
   }
 
   .track-title {
-    @apply mt-3 -ml-0.5 text-[clamp(2.5rem,4vw,4.6rem)] font-black leading-[0.96] tracking-[-0.05em];
+    @apply mt-3 -ml-0.5 text-[clamp(2.8rem,4.4vw,5.2rem)] font-black leading-[0.92] tracking-[-0.06em];
     color: var(--accent-strong);
   }
 
   .subsection-title {
-    @apply mt-3 text-[clamp(1.55rem,2.4vw,2.5rem)] font-bold leading-[1.08] tracking-[-0.03em] text-[color:var(--ink)];
+    @apply mt-3 text-[clamp(1.7rem,2.5vw,2.7rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[color:var(--ink)];
   }
 
   .section-lead {
@@ -379,14 +447,14 @@ select {
   }
 
   .curriculum-card {
-    @apply rounded-[20px] border p-6;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.04);
+    @apply rounded-[22px] border p-6;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.035);
   }
 
   .curriculum-card.active {
-    border-color: rgba(241, 153, 111, 0.45);
-    background: rgba(241, 153, 111, 0.09);
+    border-color: rgba(241, 153, 111, 0.5);
+    background: linear-gradient(180deg, rgba(241, 153, 111, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
   }
 
   .curriculum-card.locked {
@@ -423,15 +491,15 @@ select {
   }
 
   .resource-grid article {
-    @apply rounded-[20px] border p-6;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.035);
+    @apply rounded-[22px] border p-6;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .callout {
-    @apply mt-8 rounded-[22px] border px-5 py-5;
-    border-color: rgba(241, 153, 111, 0.32);
-    background: rgba(241, 153, 111, 0.08);
+    @apply mt-8 rounded-[24px] border px-5 py-5;
+    border-color: rgba(241, 153, 111, 0.34);
+    background: rgba(241, 153, 111, 0.09);
   }
 
   .callout strong {
@@ -448,9 +516,9 @@ select {
   }
 
   .sample-list > div {
-    @apply rounded-[20px] border p-6;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.035);
+    @apply rounded-[22px] border p-6;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .sample-list ul {
@@ -472,9 +540,9 @@ select {
   }
 
   .steps li {
-    @apply flex flex-col gap-1 rounded-[18px] border px-5 py-4 sm:flex-row sm:items-center sm:justify-between;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.035);
+    @apply flex flex-col gap-1 rounded-[20px] border px-5 py-4 sm:flex-row sm:items-center sm:justify-between;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .steps strong {
@@ -490,9 +558,9 @@ select {
   }
 
   .timeline > div {
-    @apply rounded-[20px] border p-5;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.035);
+    @apply rounded-[22px] border p-5;
+    border-color: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
   }
 
   .timeline strong {
@@ -515,8 +583,8 @@ select {
 
   .locked-slot {
     @apply rounded-2xl border px-4 py-4 text-[14px] font-semibold text-[color:var(--ink-dim)];
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
+    border-color: rgba(255, 255, 255, 0.09);
+    background: rgba(255, 255, 255, 0.025);
   }
 
   @media (max-width: 1023px) {
@@ -526,6 +594,10 @@ select {
 
     .sidebar {
       @apply static h-auto border-r-0 border-b;
+    }
+
+    .hero-inner {
+      @apply grid-cols-1;
     }
   }
 }
