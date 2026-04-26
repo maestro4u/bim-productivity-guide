@@ -14,6 +14,8 @@
     <header class="topbar">
       <a class="brand" href="#top" aria-label="처음으로">▸ BIM Productivity</a>
       <nav class="toplinks" aria-label="상단 링크">
+        <a href="https://github.com/maestro4u/bim-productivity-guide">GitHub</a>
+        <span>한국어/EN</span>
         <a href="#resources">학습자료</a>
         <a href="#samples">샘플</a>
         <a href="#plan">실행계획</a>
@@ -29,10 +31,13 @@
         <a href="#priority">03 실습 우선순위</a>
         <a href="#plan">04 4주 실행계획</a>
         <a href="#roles">05 역할 분담</a>
+        <div class="side-group">실전 확장 ▾</div>
+        <a href="#deploy">06 운영 방식</a>
       </aside>
 
       <section class="content">
         <section class="hero" id="summary">
+          <div class="motion-bg" aria-hidden="true"></div>
           <div class="eyebrow">토목엔지니어링 업무생산성 전환</div>
           <h1>
             <span>Civil 3D + Dynamo</span>
@@ -43,10 +48,15 @@
             AutoCAD 2D 중심 업무에서 Civil 3D 데이터 기반 업무로 전환하기 위한
             기초 학습자료, 샘플 그래프 활용법, 4주 실행계획을 정리했습니다.
           </p>
+          <div class="cta-row">
+            <a class="button primary" href="#resources">가이드 시작 →</a>
+            <a class="button secondary" href="https://help.autodesk.com/cloudhelp/2027/KOR/Civil3D-Dynamo/files/Civil3D_Dynamo_About_Dynamo_for_Autodesk_Civil_3D_html.html">공식 문서</a>
+          </div>
           <div class="terminal" aria-label="도입 방향 요약">
             <div class="terminal-head">
               <span></span><span></span><span></span>
-              <strong>workflow</strong>
+              <strong>Terminal</strong>
+              <button type="button">Copy</button>
             </div>
             <pre><code><span class="prompt">$</span> start dynamo-transition
 <span class="ok">✓</span> 공식 도움말로 실행 위치 확인
@@ -62,8 +72,12 @@
         </section>
 
         <section class="panel" id="resources">
-          <div class="section-index">01</div>
+          <div class="section-head">
+            <span class="section-index">01</span>
+            <span class="badge">필수</span>
+          </div>
           <h2>기초 학습자료 추천</h2>
+          <blockquote>처음부터 Python이나 API로 가지 말고, 공식 도움말과 샘플 그래프 실행부터 시작합니다.</blockquote>
           <div class="resource-grid">
             <article>
               <span class="rank">1순위</span>
@@ -87,12 +101,19 @@
         </section>
 
         <section class="panel" id="samples">
-          <div class="section-index">02</div>
+          <div class="section-head">
+            <span class="section-index">02</span>
+            <span class="badge">핵심</span>
+          </div>
           <h2>Civil 3D 2027 샘플 그래프 활용</h2>
           <p class="section-lead">
             Autodesk 2027 KOR 도움말의 샘플은 AutoCAD 객체 정리, Python 데이터 입출력,
             Civil 3D 설계 객체 자동화, Dynamo Player용 반복작업으로 나눠 활용합니다.
           </p>
+          <div class="callout">
+            <strong>한 줄 요약</strong>
+            <p>부서원은 Dynamo Player로 실행하고, 챔피언은 샘플 그래프를 복사해 실제 업무에 맞게 수정합니다.</p>
+          </div>
           <div class="sample-list">
             <div>
               <h3>AutoCAD 객체와 특성 세트</h3>
@@ -125,7 +146,10 @@
         </section>
 
         <section class="panel" id="priority">
-          <div class="section-index">03</div>
+          <div class="section-head">
+            <span class="section-index">03</span>
+            <span class="badge">실전 팁</span>
+          </div>
           <h2>초보자 실습 우선순위</h2>
           <ol class="steps">
             <li><strong>총연장 계산</strong><span>선택 라인워크 길이 계산으로 즉시 효과 확인</span></li>
@@ -137,7 +161,10 @@
         </section>
 
         <section class="panel" id="plan">
-          <div class="section-index">04</div>
+          <div class="section-head">
+            <span class="section-index">04</span>
+            <span class="badge">4주 로드맵</span>
+          </div>
           <h2>4주 교육 및 실행계획</h2>
           <div class="timeline">
             <div><strong>1주차</strong><p>Dynamo 실행 위치 확인, 공식 도움말과 소개 영상으로 개념 잡기</p></div>
@@ -148,7 +175,10 @@
         </section>
 
         <section class="panel" id="roles">
-          <div class="section-index">05</div>
+          <div class="section-head">
+            <span class="section-index">05</span>
+            <span class="badge">운영</span>
+          </div>
           <h2>역할 분담</h2>
           <table>
             <thead>
@@ -161,6 +191,22 @@
               <tr><td>일반 부서원</td><td>Dynamo Player 실행, 오류 피드백</td></tr>
             </tbody>
           </table>
+        </section>
+
+        <section class="panel" id="deploy">
+          <div class="section-head">
+            <span class="section-index">06</span>
+            <span class="badge">지속 업데이트</span>
+          </div>
+          <h2>운영 방식</h2>
+          <p class="section-lead">
+            이 페이지는 GitHub Pages로 배포되어 계속 업데이트됩니다. 공개 자료는 웹에 반영하고,
+            내부 운영 메모와 비공개 대화기록은 별도 보관합니다.
+          </p>
+          <div class="callout success">
+            <strong>공개 URL</strong>
+            <p><a href="https://bim.maestro4u.kr">https://bim.maestro4u.kr</a></p>
+          </div>
         </section>
       </section>
     </main>
