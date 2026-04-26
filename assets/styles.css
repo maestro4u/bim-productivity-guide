@@ -121,6 +121,7 @@ a {
 }
 
 .sidebar a,
+.sidebar button,
 .side-group {
   display: block;
   padding: 10px 10px;
@@ -128,6 +129,28 @@ a {
   color: var(--muted);
   font-size: 16px;
   font-weight: 720;
+}
+
+.sidebar button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+}
+
+.side-track.active {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--ink);
+}
+
+.side-track.locked {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.side-track.locked:disabled {
+  pointer-events: none;
 }
 
 .side-group {
@@ -144,6 +167,53 @@ a {
 .guide-content {
   min-width: 0;
   background: rgba(10, 10, 9, 0.74);
+}
+
+.curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.curriculum-card {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid rgba(255,255,255,0.13);
+  border-radius: 14px;
+  background: rgba(255,255,255,0.055);
+}
+
+.curriculum-card.active {
+  border-color: rgba(241, 153, 111, 0.5);
+  background: rgba(241, 153, 111, 0.08);
+}
+
+.curriculum-card.locked {
+  opacity: 0.45;
+  background: rgba(255,255,255,0.035);
+}
+
+.curriculum-card p {
+  color: #bcb4a9;
+}
+
+.curriculum-card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--accent-strong);
+  font-weight: 850;
+}
+
+.lock-note {
+  display: inline-flex;
+  margin-top: 10px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08);
+  color: #d3cbc0;
+  font-size: 12px;
+  font-weight: 850;
 }
 
 .hero {
@@ -604,7 +674,8 @@ th {
     display: none;
   }
 
-  .sidebar a {
+  .sidebar a,
+  .sidebar button {
     white-space: nowrap;
     font-size: 14px;
   }
@@ -620,6 +691,7 @@ th {
 
   .resource-grid,
   .sample-list,
+  .curriculum-grid,
   .timeline {
     grid-template-columns: 1fr;
   }

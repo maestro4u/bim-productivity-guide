@@ -16,7 +16,7 @@
       <nav class="toplinks" aria-label="상단 링크">
         <a href="https://github.com/maestro4u/bim-productivity-guide">GitHub</a>
         <span>한국어/EN</span>
-        <a href="#resources">학습자료</a>
+        <a href="#civil-resources">학습자료</a>
         <a href="#samples">샘플</a>
         <a href="#plan">실행계획</a>
       </nav>
@@ -61,8 +61,12 @@
 
       <section id="guide" class="guide-shell">
         <aside class="sidebar" aria-label="문서 목차">
-          <div class="side-title">기초 필수</div>
-          <a href="#resources">01 학습자료</a>
+          <div class="side-title">교육 축</div>
+          <a class="side-track active" href="#civil">Civil 3D + Dynamo</a>
+          <button class="side-track locked" type="button" disabled>Revit + Dynamo + DiRoots/pyRevit</button>
+          <button class="side-track locked" type="button" disabled>Navisworks + ACC Model Coordination</button>
+          <div class="side-group">현재 작성 완료된 항목만 활성화</div>
+          <a href="#civil-resources">01 학습자료</a>
           <a href="#samples">02 샘플 그래프</a>
           <a href="#priority">03 실습 우선순위</a>
           <a href="#plan">04 4주 실행계획</a>
@@ -72,8 +76,39 @@
         </aside>
 
         <section class="guide-content">
+        <section class="panel" id="civil">
+          <div class="section-head">
+            <span class="section-index">00</span>
+            <span class="badge">작성 완료</span>
+          </div>
+          <h2>Civil 3D + Dynamo</h2>
+          <p class="section-lead">
+            현재는 첫 번째 교육 축만 실제 내용으로 작성했습니다. Revit과 Navisworks 축은 아직 비활성 상태이며,
+            이후 작성이 완료되기 전까지는 클릭되지 않도록 막아 둡니다.
+          </p>
+          <div class="curriculum-grid" aria-label="교육 축 상태">
+            <article class="curriculum-card active">
+              <span class="rank">활성</span>
+              <h3>Civil 3D + Dynamo</h3>
+              <p>Civil 3D에서 반복 설계업무를 줄이기 위한 현재 작업 범위입니다.</p>
+              <a href="#civil-resources">세부 내용 보기</a>
+            </article>
+            <article class="curriculum-card locked" aria-disabled="true">
+              <span class="rank">잠금</span>
+              <h3>Revit + Dynamo + DiRoots/pyRevit</h3>
+              <p>아직 작성되지 않은 교육 축입니다. 작업이 끝날 때까지 비활성 상태로 유지합니다.</p>
+              <span class="lock-note">작성 금지</span>
+            </article>
+            <article class="curriculum-card locked" aria-disabled="true">
+              <span class="rank">잠금</span>
+              <h3>Navisworks + ACC Model Coordination</h3>
+              <p>아직 작성되지 않은 교육 축입니다. 작업이 끝날 때까지 비활성 상태로 유지합니다.</p>
+              <span class="lock-note">작성 금지</span>
+            </article>
+          </div>
+        </section>
 
-        <section class="panel" id="resources">
+        <section class="panel" id="civil-resources">
           <div class="section-head">
             <span class="section-index">01</span>
             <span class="badge">필수</span>
