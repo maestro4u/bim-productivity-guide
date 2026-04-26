@@ -1,24 +1,6 @@
 @import "tailwindcss";
 
-:root {
-  --bg: #04050a;
-  --bg-soft: #090b14;
-  --surface: rgba(12, 14, 24, 0.78);
-  --surface-strong: rgba(13, 16, 28, 0.96);
-  --ink: #f7f2e8;
-  --ink-dim: #cfc5b5;
-  --muted: #90897d;
-  --line: rgba(255, 255, 255, 0.08);
-  --line-strong: rgba(255, 255, 255, 0.14);
-  --accent: #f28b58;
-  --accent-strong: #ffb07e;
-  --shadow: 0 34px 90px rgba(0, 0, 0, 0.68);
-}
-
-@theme inline {
-  --color-background: var(--bg);
-  --color-foreground: var(--ink);
-}
+@variant dark (&:where(.dark, .dark *));
 
 html {
   scroll-behavior: smooth;
@@ -26,578 +8,79 @@ html {
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
+  background-color: #ffffff;
+  color: #18181b;
   overflow-x: clip;
-  background:
-    radial-gradient(circle at 24% 18%, rgba(255, 93, 64, 0.14), transparent 16%),
-    radial-gradient(circle at 72% 22%, rgba(255, 143, 99, 0.08), transparent 20%),
-    radial-gradient(circle at 56% 54%, rgba(255, 108, 74, 0.08), transparent 26%),
-    linear-gradient(180deg, #04050a 0%, #020308 100%);
-  color: var(--ink);
-  font-family:
-    Inter, Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont,
-    sans-serif;
-  letter-spacing: 0;
-  word-break: keep-all;
+  max-width: 100vw;
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: -18%;
-  z-index: -2;
-  pointer-events: none;
-  background:
-    linear-gradient(90deg, transparent 0%, rgba(255, 85, 50, 0.08) 12%, rgba(255, 85, 50, 0.34) 26%, rgba(255, 85, 50, 0.12) 38%, transparent 54%),
-    radial-gradient(ellipse at 50% 50%, rgba(255, 92, 58, 0.08), transparent 56%),
-    radial-gradient(ellipse at 18% 36%, rgba(255, 140, 100, 0.05), transparent 26%),
-    radial-gradient(ellipse at 82% 62%, rgba(255, 126, 94, 0.06), transparent 30%);
-  filter: blur(96px) saturate(122%);
-  opacity: 0.76;
-  animation: band-sweep 16s linear infinite, glow-float 20s ease-in-out infinite alternate;
+html.dark body {
+  background-color: #09090b;
+  color: #f4f4f5;
 }
 
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px),
-    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.02), transparent 68%);
-  background-size: 72px 72px, 72px 72px, 100% 100%;
-  opacity: 0.14;
-  mix-blend-mode: soft-light;
+::-webkit-scrollbar {
+  width: 5px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
+::-webkit-scrollbar-thumb {
+  background: #d4d4d8;
+  border-radius: 3px;
 }
 
-@keyframes band-sweep {
-  0% {
-    transform: translateX(-10%) translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateX(0) translateY(-1%) scale(1.03);
-  }
-
-  100% {
-    transform: translateX(10%) translateY(0.5%) scale(1.01);
-  }
+html.dark ::-webkit-scrollbar-thumb {
+  background: #27272a;
 }
 
-@keyframes glow-float {
-  0% {
-    opacity: 0.52;
-    filter: blur(80px) saturate(112%);
-  }
-
-  100% {
-    opacity: 0.82;
-    filter: blur(96px) saturate(132%);
-  }
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
 }
 
-@keyframes hero-band {
-  0% {
-    transform: translateX(-14%) translateY(-1%) scale(1.02);
-  }
-
-  50% {
-    transform: translateX(0%) translateY(1%) scale(1.08);
-  }
-
-  100% {
-    transform: translateX(14%) translateY(0%) scale(1.03);
-  }
+pre::-webkit-scrollbar {
+  height: 5px;
 }
 
-@layer components {
-  .hero-shell {
-    background:
-      radial-gradient(circle at 50% 42%, rgba(255, 103, 70, 0.2), transparent 14%),
-      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.03), transparent 15%),
-      linear-gradient(180deg, #04050a 0%, #020308 100%);
-  }
-
-  .hero-shell::before {
-    content: "";
-    position: absolute;
-    inset: -18%;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      linear-gradient(90deg, transparent 0%, rgba(255, 84, 47, 0.1) 12%, rgba(255, 84, 47, 0.46) 28%, rgba(255, 110, 75, 0.16) 46%, transparent 64%),
-      radial-gradient(circle at 50% 50%, rgba(255, 92, 58, 0.14), transparent 22%);
-    filter: blur(104px) saturate(118%);
-    opacity: 0.9;
-    animation: hero-band 10s linear infinite;
-  }
-
-  .hero-shell::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-      radial-gradient(circle at 50% 20%, rgba(255, 158, 121, 0.03), transparent 16%),
-      radial-gradient(circle at 65% 52%, rgba(255, 255, 255, 0.04), transparent 34%);
-    opacity: 0.75;
-  }
-
-  .hero-noise {
-    position: absolute;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background-image:
-      linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
-    background-size: 72px 72px, 72px 72px;
-    opacity: 0.15;
-    mix-blend-mode: soft-light;
-  }
-
-  .hero-inner {
-    @apply mx-auto grid w-full max-w-7xl gap-10 px-6 pb-16 pt-18 sm:px-8 lg:grid-cols-[1.08fr_minmax(380px,0.92fr)] lg:gap-12 lg:px-10;
-  }
-
-  .hero-copy {
-    @apply flex flex-col justify-center text-left;
-  }
-
-  .topbar {
-    @apply sticky top-0 z-30 flex min-h-[64px] items-center justify-between border-b px-6 backdrop-blur-2xl sm:px-8 lg:px-10;
-    border-color: rgba(255, 255, 255, 0.09);
-    background: rgba(4, 5, 10, 0.9);
-  }
-
-  .brand {
-    @apply text-[18px] font-black tracking-[-0.02em];
-  }
-
-  .toplinks {
-    @apply flex items-center gap-4 text-[13px] font-semibold text-[color:var(--ink-dim)] sm:gap-6 sm:text-sm;
-  }
-
-  .toplinks a:hover {
-    color: var(--ink);
-  }
-
-  .hero-eyebrow {
-    @apply mb-5 text-sm font-extrabold tracking-[0.08em] sm:text-[14px];
-    color: var(--accent-strong);
-    text-transform: uppercase;
-  }
-
-  .hero-title {
-    @apply flex max-w-[10.5ch] flex-col text-balance text-[clamp(4.2rem,8.8vw,7.8rem)] font-black leading-[0.88] tracking-[-0.07em];
-  }
-
-  .hero-title-accent {
-    color: var(--accent-strong);
-  }
-
-  .hero-lead {
-    @apply mt-8 max-w-2xl text-balance text-[clamp(1rem,1.9vw,1.18rem)] font-semibold leading-8 text-[color:var(--ink-dim)];
-  }
-
-  .hero-actions {
-    @apply mt-10 flex flex-wrap items-center justify-start gap-4;
-  }
-
-  .button {
-    @apply inline-flex items-center justify-center gap-2 rounded-[18px] border px-6 py-4 text-[16px] font-extrabold transition duration-200;
-  }
-
-  .button-primary {
-    background: linear-gradient(180deg, #ff9a65 0%, #f17c49 100%);
-    color: #190f0b;
-    box-shadow: 0 26px 44px rgba(241, 153, 111, 0.28);
-    border-color: rgba(255, 255, 255, 0.03);
-  }
-
-  .button-primary:hover {
-    transform: translateY(-1px);
-    background: #f3a982;
-  }
-
-  .button-secondary {
-    border-color: rgba(255, 255, 255, 0.14);
-    background: rgba(255, 255, 255, 0.04);
-    color: var(--ink);
-  }
-
-  .button-secondary:hover {
-    border-color: rgba(255, 255, 255, 0.24);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .terminal-card {
-    @apply mt-8 w-full rounded-[28px] border p-0 text-left shadow-2xl backdrop-blur-2xl;
-    border-color: rgba(255, 255, 255, 0.11);
-    background: rgba(10, 12, 19, 0.82);
-    box-shadow: var(--shadow);
-  }
-
-  .terminal-head {
-    @apply flex items-center gap-2 border-b px-4 py-3 text-[14px] font-bold text-[color:var(--muted)];
-    border-color: rgba(255, 255, 255, 0.09);
-  }
-
-  .terminal-head strong {
-    @apply ml-2 text-[color:var(--ink-dim)];
-  }
-
-  .terminal-head button {
-    @apply ml-auto rounded-xl border px-3 py-1 text-[13px] font-semibold text-[color:var(--ink-dim)] transition;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .terminal-head button:hover {
-    background: rgba(255, 255, 255, 0.08);
-  }
-
-  .terminal-card pre {
-    @apply overflow-x-auto px-6 py-8 text-[15px] leading-8 sm:text-[16px];
-    margin: 0;
-    white-space: pre-wrap;
-    word-break: keep-all;
-  }
-
-  .terminal-card code {
-    @apply font-mono;
-  }
-
-  .prompt {
-    color: #eac15f;
-  }
-
-  .ok {
-    color: #8cd59c;
-  }
-
-  .hero-stats {
-    @apply mt-6 flex flex-wrap justify-start gap-4;
-  }
-
-  .hero-stat {
-    @apply min-w-[140px] rounded-[18px] border px-5 py-4 text-left;
-    border-color: rgba(255, 255, 255, 0.09);
-    background: rgba(255, 255, 255, 0.04);
-  }
-
-  .hero-stat strong {
-    @apply block text-[22px] font-black tracking-[-0.03em];
-    color: #ffab78;
-  }
-
-  .hero-aside {
-    @apply flex flex-col gap-4;
-  }
-
-  .mission-card {
-    @apply rounded-[28px] border p-6;
-    border-color: rgba(255, 154, 113, 0.22);
-    background: linear-gradient(180deg, rgba(255, 154, 113, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
-    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.34);
-  }
-
-  .mission-label {
-    @apply inline-flex rounded-full border px-3 py-1 text-[12px] font-black tracking-[0.08em];
-    border-color: rgba(255, 255, 255, 0.12);
-    color: var(--accent-strong);
-    text-transform: uppercase;
-  }
-
-  .mission-card strong {
-    @apply mt-4 block text-[28px] font-black leading-[1.02] tracking-[-0.04em];
-  }
-
-  .mission-card p {
-    @apply mt-3 text-[15px] leading-7 text-[color:var(--ink-dim)];
-  }
-
-  .mission-grid {
-    @apply grid gap-3 sm:grid-cols-2;
-  }
-
-  .mission-grid > div {
-    @apply rounded-[22px] border p-5;
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.035);
-  }
-
-  .mission-grid span {
-    @apply text-[12px] font-black tracking-[0.08em] uppercase;
-    color: var(--accent-strong);
-  }
-
-  .mission-grid strong {
-    @apply mt-2 block text-[24px] font-black tracking-[-0.04em];
-  }
-
-  .mission-grid p {
-    @apply mt-2 text-[14px] leading-6 text-[color:var(--ink-dim)];
-  }
-
-  .hero-stat span {
-    @apply mt-1 block text-[14px] font-semibold text-[color:var(--ink-dim)];
-  }
-
-  .guide-shell {
-    @apply grid border-t lg:grid-cols-[308px_minmax(0,1fr)];
-    border-color: rgba(255, 255, 255, 0.09);
-  }
-
-  .sidebar {
-    @apply sticky top-[64px] h-[calc(100svh-64px)] overflow-y-auto border-b px-6 py-8 lg:border-b-0 lg:border-r lg:px-8 lg:py-10;
-    border-color: rgba(255, 255, 255, 0.08);
-    background: linear-gradient(180deg, rgba(6, 7, 12, 0.96) 0%, rgba(10, 11, 18, 0.98) 100%);
-  }
-
-  .guide-content {
-    @apply min-w-0;
-    background: linear-gradient(180deg, rgba(5, 7, 16, 0.74) 0%, rgba(6, 7, 12, 0.96) 100%);
-  }
-
-  .side-track {
-    @apply rounded-[20px] px-4 py-3 text-[17px] font-extrabold tracking-[-0.02em];
-  }
-
-  .side-track.active {
-    color: var(--accent-strong);
-    background: rgba(241, 153, 111, 0.12);
-    border: 1px solid rgba(241, 153, 111, 0.26);
-  }
-
-  .side-nav {
-    @apply mt-4 flex flex-col gap-1;
-  }
-
-  .side-nav a {
-    @apply rounded-xl px-4 py-3 text-[15px] font-medium leading-tight text-[color:var(--muted)] transition;
-  }
-
-  .side-nav a:hover {
-    background: rgba(255, 255, 255, 0.06);
-    color: var(--ink);
-  }
-
-  .side-track.locked {
-    @apply mt-4 text-[16px];
-    color: rgba(242, 239, 231, 0.38);
-  }
-
-  .panel {
-    @apply border-t px-6 py-14 sm:px-8 lg:px-10;
-    border-color: rgba(255, 255, 255, 0.09);
-  }
-
-  .section-head {
-    @apply flex items-center gap-3;
-  }
-
-  .section-index {
-    @apply text-[clamp(2.1rem,2.8vw,3rem)] font-black tracking-[-0.06em];
-    color: var(--accent-strong);
-  }
-
-  .badge {
-    @apply inline-flex rounded-full border px-3 py-1 text-[13px] font-extrabold;
-    border-color: rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .track-title {
-    @apply mt-3 -ml-0.5 text-[clamp(2.8rem,4.4vw,5.2rem)] font-black leading-[0.92] tracking-[-0.06em];
-    color: var(--accent-strong);
-  }
-
-  .subsection-title {
-    @apply mt-3 text-[clamp(1.7rem,2.5vw,2.7rem)] font-bold leading-[1.08] tracking-[-0.04em] text-[color:var(--ink)];
-  }
-
-  .section-lead {
-    @apply mt-4 max-w-4xl text-[clamp(1rem,1.3vw,1.12rem)] font-medium leading-8 text-[color:var(--ink-dim)];
-  }
-
-  blockquote {
-    @apply mt-6 border-l-4 pl-5 text-[18px] italic leading-8 text-[color:var(--ink)];
-    border-color: var(--accent);
-  }
-
-  .curriculum-grid {
-    @apply mt-8 grid gap-4 xl:grid-cols-3;
-  }
-
-  .curriculum-card {
-    @apply rounded-[22px] border p-6;
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.035);
-  }
-
-  .curriculum-card.active {
-    border-color: rgba(241, 153, 111, 0.5);
-    background: linear-gradient(180deg, rgba(241, 153, 111, 0.15) 0%, rgba(255, 255, 255, 0.03) 100%);
-  }
-
-  .curriculum-card.locked {
-    opacity: 0.5;
-  }
-
-  .curriculum-card .rank,
-  .resource-grid .rank {
-    @apply inline-flex rounded-full px-3 py-1 text-[12px] font-black uppercase tracking-[0.04em];
-    color: #1a0f0b;
-    background: var(--accent-strong);
-  }
-
-  .curriculum-card h3,
-  .resource-grid h3,
-  .sample-list h3 {
-    @apply mt-5 text-[20px] font-black leading-7 tracking-[-0.02em] text-[color:var(--ink)];
-  }
-
-  .curriculum-card p,
-  .resource-grid p,
-  .sample-list p {
-    @apply mt-3 text-[15px] leading-7 text-[color:var(--ink-dim)];
-  }
-
-  .curriculum-card a,
-  .resource-grid a {
-    @apply mt-4 inline-flex text-[14px] font-bold;
-    color: var(--accent-strong);
-  }
-
-  .resource-grid {
-    @apply mt-8 grid gap-4 xl:grid-cols-3;
-  }
-
-  .resource-grid article {
-    @apply rounded-[22px] border p-6;
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .callout {
-    @apply mt-8 rounded-[24px] border px-5 py-5;
-    border-color: rgba(241, 153, 111, 0.34);
-    background: rgba(241, 153, 111, 0.09);
-  }
-
-  .callout strong {
-    @apply text-[18px] font-black tracking-[-0.02em];
-    color: var(--accent-strong);
-  }
-
-  .callout p {
-    @apply mt-2 text-[15px] leading-7 text-[color:var(--ink-dim)];
-  }
-
-  .sample-list {
-    @apply mt-8 grid gap-4 xl:grid-cols-3;
-  }
-
-  .sample-list > div {
-    @apply rounded-[22px] border p-6;
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .sample-list ul {
-    @apply mt-4 space-y-2;
-  }
-
-  .sample-list li {
-    @apply text-[14px] leading-7 text-[color:var(--ink-dim)];
-  }
-
-  code {
-    @apply rounded-md border px-2 py-0.5 font-mono text-[14px];
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-  }
-
-  .steps {
-    @apply mt-8 space-y-3;
-  }
-
-  .steps li {
-    @apply flex flex-col gap-1 rounded-[20px] border px-5 py-4 sm:flex-row sm:items-center sm:justify-between;
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .steps strong {
-    @apply text-[17px] font-black text-[color:var(--ink)];
-  }
-
-  .steps span {
-    @apply text-[14px] text-[color:var(--ink-dim)];
-  }
-
-  .timeline {
-    @apply mt-8 grid gap-4 xl:grid-cols-4;
-  }
-
-  .timeline > div {
-    @apply rounded-[22px] border p-5;
-    border-color: rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .timeline strong {
-    @apply text-[17px] font-black text-[color:var(--accent-strong)];
-  }
-
-  .timeline p {
-    @apply mt-3 text-[14px] leading-7 text-[color:var(--ink-dim)];
-  }
-
-  .placeholder-panel .section-index,
-  .placeholder-panel .subsection-title,
-  .placeholder-panel .section-lead {
-    opacity: 0.6;
-  }
-
-  .locked-slot-grid {
-    @apply mt-6 grid gap-3 sm:grid-cols-2 xl:grid-cols-4;
-  }
-
-  .locked-slot {
-    @apply rounded-2xl border px-4 py-4 text-[14px] font-semibold text-[color:var(--ink-dim)];
-    border-color: rgba(255, 255, 255, 0.09);
-    background: rgba(255, 255, 255, 0.025);
-  }
-
-  @media (max-width: 1023px) {
-    .guide-shell {
-      @apply grid-cols-1;
-    }
-
-    .sidebar {
-      @apply static h-auto border-r-0 border-b;
-    }
-
-    .hero-inner {
-      @apply grid-cols-1;
-    }
-  }
+pre::-webkit-scrollbar-thumb {
+  background: #a1a1aa;
+}
+
+html.dark pre::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+}
+
+.prose .table-wrapper,
+.prose table {
+  max-width: 100%;
+}
+
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  display: block;
+  overflow-x: auto;
+}
+
+.prose th,
+.prose td {
+  border: 1px solid #e4e4e7;
+  padding: 0.5rem 0.75rem;
+}
+
+.prose th {
+  background-color: #f4f4f5;
+}
+
+html.dark .prose th,
+html.dark .prose td {
+  border-color: #27272a;
+}
+
+html.dark .prose th {
+  background-color: #18181b;
 }

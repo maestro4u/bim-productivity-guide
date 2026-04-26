@@ -1,0 +1,153 @@
+{
+  "site": {
+    "name": "BIM Productivity",
+    "url": "bim.maestro4u.kr",
+    "description": "Civil 3D + Dynamo 가이드",
+    "description_en": "Civil 3D + Dynamo guide",
+    "version": "1.0.0",
+    "lastUpdated": "2026-04-26"
+  },
+  "tiers": {
+    "core": {
+      "label_ko": "기초 필수",
+      "label_en": "Core Essentials",
+      "description_ko": "바로 시작할 수 있는 핵심 섹션",
+      "description_en": "Core sections to start with right away",
+      "count": 7
+    },
+    "advanced": {
+      "label_ko": "고급 확장",
+      "label_en": "Advanced",
+      "description_ko": "추후 확장할 고급 섹션",
+      "description_en": "Advanced sections to expand later",
+      "count": 2
+    }
+  },
+  "sections": [
+    {
+      "id": "00-before-you-start",
+      "order": 0,
+      "tier": "core",
+      "slug": "before-you-start",
+      "title_ko": "시작하기 전에",
+      "title_en": "Before You Start",
+      "description_ko": "Civil 3D + Dynamo를 시작하기 전에 가장 많이 받는 질문 4가지를 정리합니다.",
+      "description_en": "Answers to the 4 most common questions before starting Civil 3D + Dynamo.",
+      "icon": "message-circle",
+      "badge": "NEW",
+      "badge_en": "NEW",
+      "file_ko": "ko/00-before-you-start.md",
+      "file_en": "en/00-before-you-start.md"
+    },
+    {
+      "id": "01-civil-3d-dynamo",
+      "order": 1,
+      "tier": "core",
+      "slug": "what-is-civil-3d-dynamo",
+      "title_ko": "Civil 3D + Dynamo란?",
+      "title_en": "What is Civil 3D + Dynamo?",
+      "description_ko": "반복 설계업무를 줄이는 도구와 처리 구조를 비교합니다.",
+      "description_en": "Compare the tool and process model that reduces repetitive civil design work.",
+      "icon": "terminal",
+      "file_ko": "ko/01-civil-3d-dynamo.md",
+      "file_en": "en/01-civil-3d-dynamo.md"
+    },
+    {
+      "id": "02-use-cases",
+      "order": 2,
+      "tier": "core",
+      "slug": "use-cases",
+      "title_ko": "무엇을 할 수 있나",
+      "title_en": "What Can You Do",
+      "description_ko": "초기에는 어떤 반복업무부터 줄일지 우선순위를 정리합니다.",
+      "description_en": "Prioritize which repetitive tasks to remove first.",
+      "icon": "sparkles",
+      "file_ko": "ko/02-use-cases.md",
+      "file_en": "en/02-use-cases.md"
+    },
+    {
+      "id": "03-installation",
+      "order": 3,
+      "tier": "core",
+      "slug": "installation",
+      "title_ko": "설치 & 준비",
+      "title_en": "Installation & Setup",
+      "description_ko": "환경 준비, 샘플 그래프 위치, 첫 실행 전 확인 사항을 정리합니다.",
+      "description_en": "Prepare the environment, sample graph locations, and first-run checks.",
+      "icon": "download",
+      "file_ko": "ko/03-installation.md",
+      "file_en": "en/03-installation.md"
+    },
+    {
+      "id": "04-workflow",
+      "order": 4,
+      "tier": "core",
+      "slug": "workflow",
+      "title_ko": "첫 세션 워크플로우",
+      "title_en": "First-Session Workflow",
+      "description_ko": "실무에 바로 넣을 수 있는 첫 세션의 기본 순서를 설명합니다.",
+      "description_en": "A practical first-session sequence you can use immediately.",
+      "icon": "git-branch",
+      "file_ko": "ko/04-workflow.md",
+      "file_en": "en/04-workflow.md"
+    },
+    {
+      "id": "05-plugins",
+      "order": 5,
+      "tier": "core",
+      "slug": "plugins",
+      "title_ko": "플러그인 설치",
+      "title_en": "Plugins",
+      "description_ko": "Dynamo, DiRoots, pyRevit처럼 자주 쓰는 확장 도구를 묶어봅니다.",
+      "description_en": "Bundle the most useful extensions such as Dynamo, DiRoots, and pyRevit.",
+      "icon": "plug",
+      "badge": "한국어 추천",
+      "badge_en": "KR Recommended",
+      "file_ko": "ko/05-plugins.md",
+      "file_en": "en/05-plugins.md"
+    },
+    {
+      "id": "06-core-concepts",
+      "order": 6,
+      "tier": "core",
+      "slug": "core-concepts",
+      "title_ko": "핵심 개념",
+      "title_en": "Core Concepts",
+      "description_ko": "노드, 그래프, 플레이어, 샘플 그래프의 관계를 이해합니다.",
+      "description_en": "Understand the relationship between nodes, graphs, player, and sample graphs.",
+      "icon": "book-open",
+      "badge": "핵심",
+      "badge_en": "Essential",
+      "file_ko": "ko/06-core-concepts.md",
+      "file_en": "en/06-core-concepts.md"
+    },
+    {
+      "id": "07-automation",
+      "order": 7,
+      "tier": "advanced",
+      "slug": "automation",
+      "title_ko": "MCP & 외부 도구 연결",
+      "title_en": "MCP & Integrations",
+      "description_ko": "ACC, Revit, Navisworks, Excel 같은 외부 도구와 연결하는 방향을 정리합니다.",
+      "description_en": "Connect external tools such as ACC, Revit, Navisworks, and Excel.",
+      "icon": "link",
+      "file_ko": "ko/07-automation.md",
+      "file_en": "en/07-automation.md"
+    },
+    {
+      "id": "08-next-steps",
+      "order": 8,
+      "tier": "advanced",
+      "slug": "next-steps",
+      "title_ko": "다음 단계 & 운영 방식",
+      "title_en": "Next Steps & Operations",
+      "description_ko": "실행 후 팀 운영, 역할 분담, 확장 순서를 정리합니다.",
+      "description_en": "Plan team operation, role split, and expansion order after launch.",
+      "icon": "layers",
+      "badge": "실전 팁",
+      "badge_en": "Pro Tips",
+      "file_ko": "ko/08-next-steps.md",
+      "file_en": "en/08-next-steps.md"
+    }
+  ]
+}

@@ -1,103 +1,220 @@
-import Link from "next/link";
+'use client'
 
-const quickStats = [
-  { value: "4주", label: "기초 실행계획" },
-  { value: "7개", label: "초보자 우선 샘플" },
-  { value: "3~5명", label: "챔피언 운영" },
-];
+import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
+import type { Lang } from '@/types'
+import { trackCtaClick } from '@/lib/analytics'
 
-export function Hero() {
+interface HeroProps {
+  lang: Lang
+}
+
+export function Hero({ lang }: HeroProps) {
+  const ko = lang === 'ko'
+  const sectionRef = useRef<HTMLElement>(null)
+  const [mousePos, setMousePos] = useState({ x: 50, y: 30 })
+  const [typedPrompt, setTypedPrompt] = useState('')
+  const [cursorOn, setCursorOn] = useState(true)
+  const [phase, setPhase] = useState<'waiting' | 'typing' | 'done'>('waiting')
+
+  const prompt = ko ? '> 어떤 업무를 줄일까요?' : '> What would you like to automate?'
+
+  useEffect(() => {
+    let t: ReturnType<typeof setTimeout>
+    if (phase === 'waiting') {
+      t = setTimeout(() => setPhase('typing'), 900)
+    } else if (phase === 'typing') {
+      let i = 0
+      const tick = () => {
+        i++
+        setTypedPrompt(prompt.slice(0, i))
+        if (i < prompt.length) t = setTimeout(tick, 55)
+        else setPhase('done')
+      }
+      t = setTimeout(tick, 0)
+    } else {
+      t = setTimeout(() => {
+        setTypedPrompt('')
+        setPhase('waiting')
+      }, 3500)
+    }
+    return () => clearTimeout(t)
+  }, [phase, prompt])
+
+  useEffect(() => {
+    const id = setInterval(() => setCursorOn((v) => !v), 520)
+    return () => clearInterval(id)
+  }, [])
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (!sectionRef.current) return
+    const rect = sectionRef.current.getBoundingClientRect()
+    setMousePos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    })
+  }
+
   return (
-    <section className="hero-shell relative isolate min-h-[100svh] overflow-hidden">
-      <div className="hero-noise" aria-hidden="true" />
-      <header className="topbar">
-        <Link className="brand" href="#top" aria-label="처음으로">
-          ▸ BIM Productivity
-        </Link>
-        <nav className="toplinks" aria-label="상단 링크">
-          <a href="https://github.com/maestro4u/bim-productivity-guide" target="_blank" rel="noreferrer">
-            GitHub
-          </a>
-          <span>한국어/EN</span>
-          <a href="#civil-resources">학습자료</a>
-          <a href="#samples">샘플</a>
-          <a href="#plan">실행계획</a>
-        </nav>
-      </header>
+    <section
+      ref={sectionRef}
+      onMouseMove={handleMouseMove}
+      className="relative z-[2] overflow-hidden border-b border-zinc-200 bg-white pb-16 pt-32 dark:border-zinc-800 dark:bg-zinc-950"
+    >
+      <style>{`
+        @keyframes aurora-move {
+          from { background-position: 50% 50%, 50% 50%; }
+          to   { background-position: 350% 50%, 350% 50%; }
+        }
+      `}</style>
 
-      <div className="hero-inner">
-        <div className="hero-copy">
-          <p className="hero-eyebrow">▸ Civil 3D + Dynamo 업무생산성 가이드</p>
-          <h1 className="hero-title">
-            <span className="hero-title-accent">반복 설계업무</span>
-            <span>를 줄이는 BIM 운영판</span>
-          </h1>
-          <p className="hero-lead">
-            AutoCAD 2D 중심 업무에서 Civil 3D 데이터 기반 업무로 전환하기 위한 기초 학습자료,
-            샘플 그래프 활용법, 4주 실행계획을 정리했습니다.
-          </p>
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: [
+              'repeating-linear-gradient(100deg, #09090b 0%, #09090b 7%, transparent 10%, transparent 12%, #09090b 16%)',
+              'repeating-linear-gradient(100deg, #f97316 10%, #fb923c 15%, #f59e0b 20%, #ea580c 25%, #f97316 30%)',
+            ].join(', '),
+            backgroundSize: '300%, 200%',
+            animation: 'aurora-move 60s linear infinite',
+            filter: 'blur(10px) opacity(0.22) saturate(180%)',
+            WebkitMaskImage: 'radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%)',
+            maskImage: 'radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%)',
+          }}
+        />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: [
+              'repeating-linear-gradient(100deg, #09090b 0%, #09090b 7%, transparent 10%, transparent 12%, #09090b 16%)',
+              'repeating-linear-gradient(100deg, #f97316 10%, #fb923c 15%, #f59e0b 20%, #ea580c 25%, #f97316 30%)',
+            ].join(', '),
+            backgroundSize: '200%, 100%',
+            animation: 'aurora-move 60s linear infinite',
+            filter: 'blur(8px) opacity(0.10) saturate(180%)',
+            mixBlendMode: 'screen',
+            WebkitMaskImage: 'radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%)',
+            maskImage: 'radial-gradient(ellipse at 50% 0%, black 40%, transparent 80%)',
+          }}
+        />
+      </div>
 
-          <div className="hero-actions">
-            <Link className="button button-primary" href="#guide">
-              가이드 시작 <span aria-hidden="true">→</span>
-            </Link>
-            <a
-              className="button button-secondary"
-              href="https://help.autodesk.com/cloudhelp/2027/KOR/Civil3D-Dynamo/files/Civil3D_Dynamo_About_Dynamo_for_Autodesk_Civil_3D_html.html"
-              target="_blank"
-              rel="noreferrer"
-            >
-              공식 문서
-            </a>
+      <div
+        className="pointer-events-none absolute z-0 hidden h-[400px] w-[400px] rounded-full bg-orange-500 blur-[100px] opacity-20 md:block"
+        style={{
+          left: `${mousePos.x}%`,
+          top: `${mousePos.y}%`,
+          transform: 'translate(-50%, -50%)',
+          transition: 'left 1s cubic-bezier(0.25,0.46,0.45,0.94), top 1s cubic-bezier(0.25,0.46,0.45,0.94)',
+        }}
+      />
+
+      <div className="relative z-10 mx-auto max-w-4xl px-4 text-center lg:px-6">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-sm text-orange-500 dark:text-orange-400">
+          <span className="font-mono">▸</span>
+          <span>{ko ? 'Civil 3D + Dynamo 업무생산성 가이드' : 'Civil 3D + Dynamo Productivity Guide'}</span>
+        </div>
+
+        <h1 className="mb-6 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl dark:text-white">
+          {ko ? (
+            <>
+              <span className="text-orange-500 dark:text-orange-400">Civil 3D + Dynamo</span>로
+              <br />
+              반복 설계업무 줄이기
+            </>
+          ) : (
+            <>
+              Reduce Repetitive Civil Work
+              <br />
+              with <span className="text-orange-500 dark:text-orange-400">Civil 3D + Dynamo</span>
+            </>
+          )}
+        </h1>
+
+        <p className="mb-10 text-lg text-zinc-500 sm:text-xl dark:text-zinc-400">
+          {ko ? (
+            <>
+              AutoCAD 2D 중심 업무에서 Civil 3D 데이터 기반 업무로 전환하기 위한
+              <br className="sm:hidden" />
+              실전형 가이드
+            </>
+          ) : (
+            'A practical guide for moving from AutoCAD 2D to Civil 3D data-driven workflows'
+          )}
+        </p>
+
+        <div className="mx-auto mb-10 max-w-lg rounded-xl border border-zinc-200 bg-zinc-50 text-left shadow-lg dark:border-zinc-800 dark:bg-zinc-900 dark:shadow-2xl">
+          <div className="flex items-center gap-1.5 border-b border-zinc-200 px-4 py-3 dark:border-zinc-800">
+            <div className="h-3 w-3 rounded-full bg-red-500/60" />
+            <div className="h-3 w-3 rounded-full bg-yellow-500/60" />
+            <div className="h-3 w-3 rounded-full bg-green-500/60" />
+            <span className="ml-2 font-mono text-xs text-zinc-400 dark:text-zinc-600">Terminal</span>
+          </div>
+          <div className="p-4 font-mono text-sm">
+            <div className="text-zinc-400 dark:text-zinc-500">$ start civil3d-dynamo-guide</div>
+            <div className="mt-1 text-green-600 dark:text-green-400">✓ Civil 3D sample graphs confirmed</div>
+            <div className="mt-2 text-zinc-400 dark:text-zinc-500">$ dynamo player</div>
+            <div className="mt-1 min-h-[1.5rem] text-orange-500 dark:text-orange-400">
+              {typedPrompt}
+              <span
+                className="ml-px inline-block h-[0.9em] w-[8px] translate-y-[1px] rounded-[1px] bg-orange-500 align-middle dark:bg-orange-400"
+                style={{ opacity: cursorOn ? 0.85 : 0 }}
+              />
+            </div>
           </div>
         </div>
 
-        <div className="hero-aside">
-          <div className="mission-card">
-            <span className="mission-label">현재 작성 축</span>
-            <strong>Civil 3D + Dynamo</strong>
-            <p>첫 번째 축만 실제 내용으로 채우고 나머지는 다음 단계로 남겨둔 상태입니다.</p>
+        <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+          <Link
+            href="#01-civil-3d-dynamo"
+            onClick={() =>
+              trackCtaClick({
+                cta_id: 'start_guide',
+                destination: '#01-civil-3d-dynamo',
+                lang,
+              })
+            }
+            className="min-w-[10rem] rounded-lg bg-orange-500 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-orange-400"
+          >
+            {ko ? '가이드 시작 →' : 'Start Guide →'}
+          </Link>
+          <a
+            href="https://help.autodesk.com/view/CIV3D/2027/KOR/?guid=Civil3D_Dynamo_Samples_for_Dynamo_for_Autodesk_Civil_3D_html"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() =>
+              trackCtaClick({
+                cta_id: 'official_docs',
+                destination:
+                  'https://help.autodesk.com/view/CIV3D/2027/KOR/?guid=Civil3D_Dynamo_Samples_for_Dynamo_for_Autodesk_Civil_3D_html',
+                lang,
+              })
+            }
+            className="min-w-[10rem] rounded-lg border border-zinc-300 px-6 py-3 text-center text-sm font-semibold text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-white"
+          >
+            {ko ? '공식 문서' : 'Official Docs'}
+          </a>
+        </div>
+
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-zinc-400 dark:text-zinc-500">
+          <div className="flex items-center gap-2">
+            <span className="text-orange-500 dark:text-orange-400">09</span>
+            <span>{ko ? '섹션' : 'Sections'}</span>
           </div>
-          <div className="mission-grid">
-            <div>
-              <span>활성</span>
-              <strong>01-04</strong>
-              <p>학습자료 / 샘플 / 우선순위 / 4주계획</p>
-            </div>
-            <div>
-              <span>잠금</span>
-              <strong>02축</strong>
-              <p>Revit, Navisworks는 자리만 선점</p>
-            </div>
+          <div className="flex items-center gap-2">
+            <span className="text-orange-500 dark:text-orange-400">02</span>
+            <span>{ko ? '고급 확장' : 'Advanced'}</span>
           </div>
-          <div className="terminal-card" aria-label="도입 방향 요약">
-            <div className="terminal-head">
-              <span className="dot dot-red" />
-              <span className="dot dot-yellow" />
-              <span className="dot dot-green" />
-              <strong>Terminal</strong>
-              <button type="button">Copy</button>
-            </div>
-            <pre>
-              <code>
-                <span className="prompt">$</span> start dynamo-transition{"\n"}
-                <span className="ok">✓</span> 공식 도움말로 실행 위치 확인{"\n"}
-                <span className="ok">✓</span> Dynamo Primer로 노드·그래프 이해{"\n"}
-                <span className="ok">✓</span> Civil 3D 2027 샘플 그래프 실행{"\n"}
-                <span className="ok">✓</span> 반복업무 1개를 Dynamo Player로 자동화
-              </code>
-            </pre>
-          </div>
-          <div className="hero-stats">
-            {quickStats.map((item) => (
-              <div key={item.label} className="hero-stat">
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
-              </div>
-            ))}
+          <div className="flex items-center gap-2">
+            <span className="text-orange-500 dark:text-orange-400">KO</span>
+            <span>/</span>
+            <span className="text-orange-500 dark:text-orange-400">EN</span>
           </div>
         </div>
       </div>
     </section>
-  );
+  )
 }
