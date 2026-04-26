@@ -149,9 +149,15 @@ a {
   font: inherit;
 }
 
-.side-track.active {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--ink);
+.sidebar a.side-track.active {
+  background: rgba(241, 153, 111, 0.12);
+  color: var(--accent-strong) !important;
+  font-weight: 900;
+}
+
+.sidebar a.side-track.active:hover {
+  background: rgba(241, 153, 111, 0.16);
+  color: var(--accent-strong) !important;
 }
 
 .side-track.locked {
