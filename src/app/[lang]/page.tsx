@@ -25,16 +25,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (lang === 'en') {
     return {
-      title: 'BIM Productivity — Civil 3D + Dynamo Guide',
+      title: 'BIM Productivity — Civil 3D 6-Month Course',
       description:
-        'A practical guide for reducing repetitive civil design work with Civil 3D, Dynamo, Revit, Navisworks, and BIM automation.',
+        'A concise six-month Civil 3D course covering coordinates, terrain, alignment, corridors, drainage, standards, and Dynamo automation.',
     }
   }
 
   return {
-    title: 'BIM Productivity — Civil 3D + Dynamo 가이드',
-    description:
-      'Civil 3D + Dynamo를 중심으로 반복 설계업무를 줄이기 위한 학습자료, 샘플 그래프, 실행계획 가이드',
+    title: 'BIM Productivity — Civil 3D 6개월 과정',
+    description: 'Civil 3D 6개월 과정의 핵심만 정리한 요약 가이드',
   }
 }
 

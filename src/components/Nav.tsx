@@ -20,7 +20,7 @@ export function Nav({ lang, onToggle, mobileMenuOpen, onMobileMenuToggle }: NavP
           <span className="text-orange-500 dark:text-orange-400">▸</span>
           <span>BIM Productivity</span>
           <span className="hidden text-xs font-normal text-zinc-400 sm:inline">
-            {lang === 'ko' ? 'Civil 3D + Dynamo 가이드' : 'Civil 3D + Dynamo Guide'}
+            {lang === 'ko' ? 'Civil 3D 6개월 과정' : 'Civil 3D 6-Month Course'}
           </span>
         </Link>
 

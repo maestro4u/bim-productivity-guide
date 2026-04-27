@@ -4,7 +4,7 @@ import './globals.css'
 
 export const metadata: Metadata = {
   title: 'BIM Productivity',
-  description: 'Civil 3D + Dynamo 기반 반복 설계업무 줄이기 가이드',
+  description: 'Civil 3D 6개월 과정 핵심 요약 가이드',
 }
 
 export default function RootLayout({

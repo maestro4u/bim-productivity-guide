@@ -1,6 +1,6 @@
 # BIM Productivity
 
-Civil 3D + Dynamo 기반 반복 설계업무 줄이기 가이드입니다.
+Civil 3D 6개월 과정 핵심 요약 가이드입니다.
 
 ## 구조
 

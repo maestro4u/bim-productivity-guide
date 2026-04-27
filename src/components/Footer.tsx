@@ -20,8 +20,8 @@ export function Footer({ lang }: FooterProps) {
 
           <p className="max-w-md text-sm text-zinc-500">
             {ko
-              ? 'Civil 3D + Dynamo를 중심으로 반복 설계업무를 줄이는 데 필요한 자료를 정리한 가이드입니다.'
-              : 'A guide for reducing repetitive civil design work with Civil 3D + Dynamo.'}
+              ? 'Civil 3D 6개월 과정의 핵심만 정리한 요약 가이드입니다.'
+              : 'A concise summary of the six-month Civil 3D course.'}
           </p>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-400 dark:text-zinc-500">

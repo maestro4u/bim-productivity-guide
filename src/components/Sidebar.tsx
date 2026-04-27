@@ -58,7 +58,7 @@ export function Sidebar({ sections, lang, onLinkClick, isMobile = false }: Sideb
     <nav ref={navRef} className="flex flex-col gap-1">
       <div className="mb-2">
         <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500">
-          {lang === 'ko' ? '기초 필수' : 'Core Essentials'}
+          {lang === 'ko' ? '기초필수 - Civil 3D' : 'Core - Civil 3D'}
         </p>
         {coreSections.map((section) => (
           <SidebarItem
@@ -77,7 +77,7 @@ export function Sidebar({ sections, lang, onLinkClick, isMobile = false }: Sideb
           onClick={() => setShowAdvanced(!showAdvanced)}
           className="mb-2 flex w-full items-center justify-between px-2 text-xs font-semibold uppercase tracking-wider text-zinc-400 transition-colors hover:text-zinc-700 dark:text-zinc-500 dark:hover:text-zinc-300"
         >
-          <span>{lang === 'ko' ? '고급 확장' : 'Advanced'}</span>
+          <span>{lang === 'ko' ? '고급확장 - Dynamo' : 'Advanced - Dynamo'}</span>
           <span className="text-zinc-300 dark:text-zinc-600">{showAdvanced ? '▾' : '▸'}</span>
         </button>
         {showAdvanced &&

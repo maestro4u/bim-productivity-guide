@@ -17,7 +17,7 @@ export function Hero({ lang }: HeroProps) {
   const [cursorOn, setCursorOn] = useState(true)
   const [phase, setPhase] = useState<'waiting' | 'typing' | 'done'>('waiting')
 
-  const prompt = ko ? '> 어떤 업무를 줄일까요?' : '> What would you like to automate?'
+  const prompt = ko ? '> 어떤 과정을 먼저 볼까요?' : '> Which module should we start with?'
 
   useEffect(() => {
     let t: ReturnType<typeof setTimeout>
@@ -115,21 +115,21 @@ export function Hero({ lang }: HeroProps) {
       <div className="relative z-10 mx-auto max-w-4xl px-4 text-center lg:px-6">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-orange-500/30 bg-orange-500/10 px-4 py-1.5 text-sm text-orange-500 dark:text-orange-400">
           <span className="font-mono">▸</span>
-          <span>{ko ? 'Civil 3D + Dynamo 업무생산성 가이드' : 'Civil 3D + Dynamo Productivity Guide'}</span>
+          <span>{ko ? 'Civil 3D 6개월 과정' : 'Civil 3D 6-Month Course'}</span>
         </div>
 
         <h1 className="mb-6 text-4xl font-bold tracking-tight text-zinc-900 sm:text-5xl lg:text-6xl dark:text-white">
           {ko ? (
             <>
-              <span className="text-orange-500 dark:text-orange-400">Civil 3D + Dynamo</span>로
+              <span className="text-orange-500 dark:text-orange-400">Civil 3D</span> 6개월 과정으로
               <br />
-              반복 설계업무 줄이기
+              핵심만 빠르게 익히기
             </>
           ) : (
             <>
-              Reduce Repetitive Civil Work
+              Learn the Civil 3D Course
               <br />
-              with <span className="text-orange-500 dark:text-orange-400">Civil 3D + Dynamo</span>
+              in Six Months
             </>
           )}
         </h1>
@@ -137,12 +137,12 @@ export function Hero({ lang }: HeroProps) {
         <p className="mb-10 text-lg text-zinc-500 sm:text-xl dark:text-zinc-400">
           {ko ? (
             <>
-              AutoCAD 2D 중심 업무에서 Civil 3D 데이터 기반 업무로 전환하기 위한
+              좌표, 지형, 선형, 배수, 기준, 자동화를
               <br className="sm:hidden" />
-              실전형 가이드
+              핵심만 정리한 실전형 요약
             </>
           ) : (
-            'A practical guide for moving from AutoCAD 2D to Civil 3D data-driven workflows'
+            'A concise summary of the six-month Civil 3D training path'
           )}
         </p>
 
@@ -154,9 +154,9 @@ export function Hero({ lang }: HeroProps) {
             <span className="ml-2 font-mono text-xs text-zinc-400 dark:text-zinc-600">Terminal</span>
           </div>
           <div className="p-4 font-mono text-sm">
-            <div className="text-zinc-400 dark:text-zinc-500">$ start civil3d-dynamo-guide</div>
-            <div className="mt-1 text-green-600 dark:text-green-400">✓ Civil 3D sample graphs confirmed</div>
-            <div className="mt-2 text-zinc-400 dark:text-zinc-500">$ dynamo player</div>
+            <div className="text-zinc-400 dark:text-zinc-500">$ start civil3d-course</div>
+            <div className="mt-1 text-green-600 dark:text-green-400">✓ Civil 3D course outline ready</div>
+            <div className="mt-2 text-zinc-400 dark:text-zinc-500">$ module 01</div>
             <div className="mt-1 min-h-[1.5rem] text-orange-500 dark:text-orange-400">
               {typedPrompt}
               <span
@@ -169,17 +169,17 @@ export function Hero({ lang }: HeroProps) {
 
         <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
           <Link
-            href="#01-civil-3d-dynamo"
+            href="#00-before-you-start"
             onClick={() =>
               trackCtaClick({
-                cta_id: 'start_guide',
-                destination: '#01-civil-3d-dynamo',
+                cta_id: 'start_course',
+                destination: '#00-before-you-start',
                 lang,
               })
             }
             className="min-w-[10rem] rounded-lg bg-orange-500 px-6 py-3 text-center text-sm font-semibold text-white transition-colors hover:bg-orange-400"
           >
-            {ko ? '가이드 시작 →' : 'Start Guide →'}
+            {ko ? '과정 보기 →' : 'View Course →'}
           </Link>
           <a
             href="https://help.autodesk.com/view/CIV3D/2027/KOR/?guid=Civil3D_Dynamo_Samples_for_Dynamo_for_Autodesk_Civil_3D_html"
@@ -195,7 +195,7 @@ export function Hero({ lang }: HeroProps) {
             }
             className="min-w-[10rem] rounded-lg border border-zinc-300 px-6 py-3 text-center text-sm font-semibold text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-900 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-white"
           >
-            {ko ? '공식 문서' : 'Official Docs'}
+            {ko ? '공식 도움말' : 'Official Docs'}
           </a>
         </div>
 
@@ -206,7 +206,7 @@ export function Hero({ lang }: HeroProps) {
           </div>
           <div className="flex items-center gap-2">
             <span className="text-orange-500 dark:text-orange-400">02</span>
-            <span>{ko ? '고급 확장' : 'Advanced'}</span>
+            <span>{ko ? '고급확장 - Dynamo' : 'Advanced - Dynamo'}</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-orange-500 dark:text-orange-400">KO</span>
