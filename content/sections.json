@@ -5,7 +5,7 @@
     "description": "Civil 3D 6개월 과정",
     "description_en": "6-month Civil 3D course",
     "version": "1.0.0",
-    "lastUpdated": "2026-04-27"
+    "lastUpdated": "2026-05-05"
   },
   "tiers": {
     "core": {
@@ -57,9 +57,9 @@
       "order": 2,
       "tier": "core",
       "slug": "use-cases",
-      "title_ko": "2개월차. 선형과 종단",
+      "title_ko": "2개월차. 선형과 종단 설계",
       "title_en": "Month 2. Alignment and Profiles",
-      "description_ko": "Alignment, Profile, Section View의 핵심만 잡습니다.",
+      "description_ko": "KDS 기준을 적용해 Alignment와 Profile을 작성하고 종단 밴드까지 정리합니다.",
       "description_en": "Core workflow for Alignment, Profile, and Section View.",
       "icon": "sparkles",
       "file_ko": "ko/02-use-cases.md",
