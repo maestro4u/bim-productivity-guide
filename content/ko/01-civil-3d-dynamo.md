@@ -32,6 +32,27 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
   <figcaption className="text-center text-sm text-zinc-500">그림 6. KOREA_GRS80 좌표계 상세 화면</figcaption>
 </figure>
 
+<div className="image-sample-panel">
+  <div>
+    <p className="image-sample-label">샘플 A. 원본 유지 + 웹 스타일 보정</p>
+    <figure className="image-frame image-frame-css">
+      <img
+        src="/assets/civil3d-coordinate-setup/image-16.png"
+        alt="CSS 보정만 적용한 KOREA_GRS80 좌표계 상세 화면"
+      />
+    </figure>
+  </div>
+  <div>
+    <p className="image-sample-label">샘플 B. 별도 이미지 파일 보정</p>
+    <figure className="image-frame image-frame-file">
+      <img
+        src="/assets/civil3d-coordinate-setup/image-16-dark-sample.png"
+        alt="별도 파일로 톤 보정한 KOREA_GRS80 좌표계 상세 화면"
+      />
+    </figure>
+  </div>
+</div>
+
 ### 2. 좌표계 라이브러리로 들어간다
 
 <figure>
