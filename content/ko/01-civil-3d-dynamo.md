@@ -23,31 +23,22 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
 
 #### 1.2 연관범주 `korea` 등록
 
-<figure>
-  <img
-    src="/assets/civil3d-coordinate-setup/image-16.png"
-    alt="KOREA_GRS80 좌표계 상세 화면"
-    className="mx-auto my-4 block w-full max-w-[780px] rounded-md border border-zinc-200 shadow-sm brightness-[0.98] contrast-[0.98]"
-  />
-  <figcaption className="text-center text-sm text-zinc-500">그림 6. KOREA_GRS80 좌표계 상세 화면</figcaption>
-</figure>
-
 <div className="image-sample-panel">
   <div>
-    <p className="image-sample-label">샘플 A. 원본 유지 + 웹 스타일 보정</p>
-    <figure className="image-frame image-frame-css">
+    <p className="image-sample-label">샘플 B. 파일 보정 + 낮은 투명도</p>
+    <figure className="image-frame image-frame-file image-frame-b">
       <img
-        src="/assets/civil3d-coordinate-setup/image-16.png"
-        alt="CSS 보정만 적용한 KOREA_GRS80 좌표계 상세 화면"
+        src="/assets/civil3d-coordinate-setup/image-16-dark-sample.png"
+        alt="낮은 투명도를 적용한 KOREA_GRS80 좌표계 상세 화면"
       />
     </figure>
   </div>
   <div>
-    <p className="image-sample-label">샘플 B. 별도 이미지 파일 보정</p>
-    <figure className="image-frame image-frame-file">
+    <p className="image-sample-label">샘플 C. 파일 보정 + 배경 투명도 강화</p>
+    <figure className="image-frame image-frame-file image-frame-c">
       <img
-        src="/assets/civil3d-coordinate-setup/image-16-dark-sample.png"
-        alt="별도 파일로 톤 보정한 KOREA_GRS80 좌표계 상세 화면"
+        src="/assets/civil3d-coordinate-setup/image-16-transparent-sample.png"
+        alt="배경 투명도를 강화한 KOREA_GRS80 좌표계 상세 화면"
       />
     </figure>
   </div>
