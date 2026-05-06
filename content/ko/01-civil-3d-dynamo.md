@@ -28,7 +28,7 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
     src="/assets/civil3d-coordinate-setup/image-16-dark-sample.png"
     alt="KOREA_GRS80 좌표계 상세 화면"
   />
-  <figcaption>그림 6. KOREA_GRS80 좌표계 상세 화면</figcaption>
+  <figcaption>그림 01-1. KOREA_GRS80 좌표계 상세 화면</figcaption>
 </figure>
 
 ### 2. 좌표계 라이브러리로 들어간다
@@ -38,7 +38,7 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
     src="/assets/civil3d-coordinate-setup/image-dark.png"
     alt="Civil 3D에서 지도 설정과 라이브러리 메뉴를 여는 화면"
   />
-  <figcaption>그림 1. Civil 3D에서 지도 설정과 라이브러리 메뉴를 여는 화면</figcaption>
+  <figcaption>그림 01-2. Civil 3D에서 지도 설정과 라이브러리 메뉴를 여는 화면</figcaption>
 </figure>
 
 먼저 `지도 설정`과 `라이브러리` 메뉴를 연다.  
@@ -52,7 +52,7 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
     src="/assets/civil3d-coordinate-setup/image-3-dark.png"
     alt="좌표표 라이브러리에서 korea를 검색한 화면"
   />
-  <figcaption>그림 2. 좌표표 라이브러리에서 korea를 검색한 화면</figcaption>
+  <figcaption>그림 01-3. 좌표표 라이브러리에서 korea를 검색한 화면</figcaption>
 </figure>
 
 좌표계 목록에서 `korea`를 검색하면 관련 좌표계가 한 번에 보인다.  
@@ -65,7 +65,7 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
     src="/assets/civil3d-coordinate-setup/image-8-dark.png"
     alt="Bessel과 GRS80 좌표계 비교표"
   />
-  <figcaption>그림 11. Bessel과 GRS80 좌표계 비교표</figcaption>
+  <figcaption>그림 01-4. Bessel과 GRS80 좌표계 비교표</figcaption>
 </figure>
 
 비교표는 실제 현장에서 많이 헷갈리는 기준을 정리해준다.  
@@ -79,7 +79,7 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
     src="/assets/civil3d-coordinate-setup/image-18-dark.png"
     alt="Civil 3D의 지리 위치와 지도 설정 화면"
   />
-  <figcaption>그림 13. Civil 3D의 지리 위치와 지도 설정 화면</figcaption>
+  <figcaption>그림 01-5. Civil 3D의 지리 위치와 지도 설정 화면</figcaption>
 </figure>
 
 캐드 도면과 지형데이타 간에 지리 위치가 맞는지 확인한다.  
