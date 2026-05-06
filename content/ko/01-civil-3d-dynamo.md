@@ -23,36 +23,22 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
 
 #### 1.2 연관범주 `korea` 등록
 
-<div className="image-sample-panel">
-  <div>
-    <p className="image-sample-label">샘플 B. 파일 보정 + 낮은 투명도</p>
-    <figure className="image-frame image-frame-file image-frame-b">
-      <img
-        src="/assets/civil3d-coordinate-setup/image-16-dark-sample.png"
-        alt="낮은 투명도를 적용한 KOREA_GRS80 좌표계 상세 화면"
-      />
-    </figure>
-  </div>
-  <div>
-    <p className="image-sample-label">샘플 C. 파일 보정 + 배경 투명도 강화</p>
-    <figure className="image-frame image-frame-file image-frame-c">
-      <img
-        src="/assets/civil3d-coordinate-setup/image-16-transparent-sample.png"
-        alt="배경 투명도를 강화한 KOREA_GRS80 좌표계 상세 화면"
-      />
-    </figure>
-  </div>
-</div>
+<figure className="lesson-image-frame">
+  <img
+    src="/assets/civil3d-coordinate-setup/image-16-dark-sample.png"
+    alt="KOREA_GRS80 좌표계 상세 화면"
+  />
+  <figcaption>그림 6. KOREA_GRS80 좌표계 상세 화면</figcaption>
+</figure>
 
 ### 2. 좌표계 라이브러리로 들어간다
 
-<figure>
+<figure className="lesson-image-frame">
   <img
-    src="/assets/civil3d-coordinate-setup/image.png"
+    src="/assets/civil3d-coordinate-setup/image-dark.png"
     alt="Civil 3D에서 지도 설정과 라이브러리 메뉴를 여는 화면"
-    className="mx-auto my-4 block w-full max-w-[780px] rounded-md border border-zinc-200 shadow-sm brightness-[0.98] contrast-[0.98]"
   />
-  <figcaption className="text-center text-sm text-zinc-500">그림 1. Civil 3D에서 지도 설정과 라이브러리 메뉴를 여는 화면</figcaption>
+  <figcaption>그림 1. Civil 3D에서 지도 설정과 라이브러리 메뉴를 여는 화면</figcaption>
 </figure>
 
 먼저 `지도 설정`과 `라이브러리` 메뉴를 연다.  
@@ -61,13 +47,12 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
 
 ### 3. `korea`를 검색한다
 
-<figure>
+<figure className="lesson-image-frame">
   <img
-    src="/assets/civil3d-coordinate-setup/image-3.png"
+    src="/assets/civil3d-coordinate-setup/image-3-dark.png"
     alt="좌표표 라이브러리에서 korea를 검색한 화면"
-    className="mx-auto my-4 block w-full max-w-[780px] rounded-md border border-zinc-200 shadow-sm brightness-[0.98] contrast-[0.98]"
   />
-  <figcaption className="text-center text-sm text-zinc-500">그림 2. 좌표표 라이브러리에서 korea를 검색한 화면</figcaption>
+  <figcaption>그림 2. 좌표표 라이브러리에서 korea를 검색한 화면</figcaption>
 </figure>
 
 좌표계 목록에서 `korea`를 검색하면 관련 좌표계가 한 번에 보인다.  
@@ -75,13 +60,12 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
 
 ### 4. 비교표로 기준을 한 번 더 확인한다
 
-<figure>
+<figure className="lesson-image-frame">
   <img
-    src="/assets/civil3d-coordinate-setup/image-8.png"
+    src="/assets/civil3d-coordinate-setup/image-8-dark.png"
     alt="Bessel과 GRS80 좌표계 비교표"
-    className="mx-auto my-4 block w-full max-w-[820px] rounded-md border border-zinc-200 shadow-sm brightness-[0.98] contrast-[0.98]"
   />
-  <figcaption className="text-center text-sm text-zinc-500">그림 11. Bessel과 GRS80 좌표계 비교표</figcaption>
+  <figcaption>그림 11. Bessel과 GRS80 좌표계 비교표</figcaption>
 </figure>
 
 비교표는 실제 현장에서 많이 헷갈리는 기준을 정리해준다.  
@@ -90,13 +74,12 @@ Civil 3D의 좌표설정은 도면의 시작점이다.
 
 ### 5. 맵을 통한 확인
 
-<figure>
+<figure className="lesson-image-frame">
   <img
-    src="/assets/civil3d-coordinate-setup/image-18.png"
+    src="/assets/civil3d-coordinate-setup/image-18-dark.png"
     alt="Civil 3D의 지리 위치와 지도 설정 화면"
-    className="mx-auto my-4 block w-full max-w-[780px] rounded-md border border-zinc-200 shadow-sm brightness-[0.98] contrast-[0.98]"
   />
-  <figcaption className="text-center text-sm text-zinc-500">그림 13. Civil 3D의 지리 위치와 지도 설정 화면</figcaption>
+  <figcaption>그림 13. Civil 3D의 지리 위치와 지도 설정 화면</figcaption>
 </figure>
 
 캐드 도면과 지형데이타 간에 지리 위치가 맞는지 확인한다.  
