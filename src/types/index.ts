@@ -16,6 +16,13 @@ export interface SectionMeta {
   badge_en?: string
   file_ko: string
   file_en: string
+  toc?: SectionTocItem[]
+}
+
+export interface SectionTocItem {
+  id: string
+  title: string
+  order: number
 }
 
 export interface SectionsConfig {

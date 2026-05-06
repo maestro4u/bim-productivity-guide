@@ -60,6 +60,10 @@ html.dark pre::-webkit-scrollbar-thumb {
   max-width: 100%;
 }
 
+.prose h3[id] {
+  scroll-margin-top: 5rem;
+}
+
 .prose table {
   width: 100%;
   border-collapse: collapse;

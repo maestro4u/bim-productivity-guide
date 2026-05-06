@@ -46,6 +46,10 @@ export function Sidebar({ sections, lang, onLinkClick, isMobile = false }: Sideb
     sections.forEach((section) => {
       const el = document.getElementById(section.id)
       if (el) observer.observe(el)
+      section.toc?.forEach((item) => {
+        const itemEl = document.getElementById(item.id)
+        if (itemEl) observer.observe(itemEl)
+      })
     })
 
     return () => observer.disconnect()
@@ -66,6 +70,7 @@ export function Sidebar({ sections, lang, onLinkClick, isMobile = false }: Sideb
             section={section}
             lang={lang}
             isActive={activeId === section.id}
+            activeId={activeId}
             onLinkClick={onLinkClick}
             isMobile={isMobile}
           />
@@ -87,6 +92,7 @@ export function Sidebar({ sections, lang, onLinkClick, isMobile = false }: Sideb
               section={section}
               lang={lang}
               isActive={activeId === section.id}
+              activeId={activeId}
               onLinkClick={onLinkClick}
               isMobile={isMobile}
             />
@@ -100,16 +106,19 @@ function SidebarItem({
   section,
   lang,
   isActive,
+  activeId,
   onLinkClick,
   isMobile = false,
 }: {
   section: SectionMeta
   lang: Lang
   isActive: boolean
+  activeId: string
   onLinkClick?: () => void
   isMobile?: boolean
 }) {
   const title = lang === 'ko' ? section.title_ko : section.title_en
+  const isChildActive = section.toc?.some((item) => item.id === activeId) ?? false
 
   const handleClick = () => {
     trackTocClick({ target_section: section.id, is_mobile: isMobile, lang })
@@ -117,24 +126,77 @@ function SidebarItem({
   }
 
   return (
+    <div className="mb-0.5">
+      <a
+        href={`#${section.id}`}
+        onClick={handleClick}
+        className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
+          isActive || isChildActive
+            ? 'bg-orange-500/10 text-orange-500 dark:text-orange-400'
+            : 'text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-zinc-200'
+        }`}
+      >
+        <span className="w-5 text-center font-mono text-xs text-zinc-300 dark:text-zinc-600">
+          {String(section.order).padStart(2, '0')}
+        </span>
+        <span className="truncate">{title}</span>
+        {section.badge && (
+          <span className="ml-auto shrink-0 rounded bg-orange-500/20 px-1 py-0.5 text-xs text-orange-500 dark:text-orange-400">
+            {lang === 'ko' ? section.badge : (section.badge_en ?? section.badge)}
+          </span>
+        )}
+      </a>
+
+      {section.toc && section.toc.length > 0 && (
+        <div className="ml-7 mt-1 flex flex-col gap-0.5 border-l border-zinc-200 pl-2 dark:border-zinc-800">
+          {section.toc.map((item) => (
+            <SidebarSubItem
+              key={item.id}
+              item={item}
+              lang={lang}
+              isActive={activeId === item.id}
+              onLinkClick={onLinkClick}
+              isMobile={isMobile}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+function SidebarSubItem({
+  item,
+  lang,
+  isActive,
+  onLinkClick,
+  isMobile = false,
+}: {
+  item: NonNullable<SectionMeta['toc']>[number]
+  lang: Lang
+  isActive: boolean
+  onLinkClick?: () => void
+  isMobile?: boolean
+}) {
+  const handleClick = () => {
+    trackTocClick({ target_section: item.id, is_mobile: isMobile, lang })
+    onLinkClick?.()
+  }
+
+  return (
     <a
-      href={`#${section.id}`}
+      href={`#${item.id}`}
       onClick={handleClick}
-      className={`flex items-center gap-2 rounded-md px-2 py-1.5 text-sm transition-colors ${
+      className={`flex items-start gap-1.5 rounded px-1.5 py-1 text-xs leading-snug transition-colors ${
         isActive
           ? 'bg-orange-500/10 text-orange-500 dark:text-orange-400'
-          : 'text-zinc-500 hover:bg-zinc-100 hover:text-zinc-800 dark:text-zinc-400 dark:hover:bg-zinc-800/50 dark:hover:text-zinc-200'
+          : 'text-zinc-400 hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-500 dark:hover:bg-zinc-800/50 dark:hover:text-zinc-300'
       }`}
     >
-      <span className="w-5 text-center font-mono text-xs text-zinc-300 dark:text-zinc-600">
-        {String(section.order).padStart(2, '0')}
+      <span className="w-4 shrink-0 text-right font-mono text-[11px] text-zinc-300 dark:text-zinc-600">
+        {item.order}
       </span>
-      <span className="truncate">{title}</span>
-      {section.badge && (
-        <span className="ml-auto shrink-0 rounded bg-orange-500/20 px-1 py-0.5 text-xs text-orange-500 dark:text-orange-400">
-          {lang === 'ko' ? section.badge : (section.badge_en ?? section.badge)}
-        </span>
-      )}
+      <span className="line-clamp-2">{item.title}</span>
     </a>
   )
 }

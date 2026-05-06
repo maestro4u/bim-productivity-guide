@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import remarkGfm from 'remark-gfm'
-import { getSectionMetas, getAllSectionMarkdowns } from '@/lib/content'
+import { getSectionMetasWithToc, getAllSectionMarkdowns } from '@/lib/content'
 import { PageClient } from '@/components/PageClient'
 import { SectionBlock } from '@/components/SectionBlock'
 import type { Lang } from '@/types'
@@ -45,7 +45,7 @@ export default async function Page({ params }: PageProps) {
   }
 
   const lang = langParam as Lang
-  const sections = getSectionMetas()
+  const sections = getSectionMetasWithToc(lang)
   const sectionContents = getAllSectionMarkdowns(lang)
 
   return (
