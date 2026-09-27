@@ -7,7 +7,7 @@ PUB=ROOT/'public/training';PUB.mkdir(exist_ok=True)
 DATA=json.loads((ROOT/'content/training/lessons.json').read_text())
 def schedule(n):
  friday=date(2026,10,2)+timedelta(weeks=n-1)
- moved={date(2026,10,9):'한글날',date(2026,10,23):'공동연차',date(2026,11,13):'공동연차'}
+ moved={date(2026,10,9):'한글날',date(2026,10,23):'업무관계상',date(2026,11,13):'공동연차'}
  actual=friday-timedelta(days=1) if friday in moved else friday
  label=actual.isoformat()+(' (목)' if friday in moved else ' (금)')+' 13:30~15:30'+(' · '+moved[friday]+' 조정' if friday in moved else '')
  lesson=next((d for d in DATA if d['week']==n),None)
