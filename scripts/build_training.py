@@ -1,9 +1,18 @@
 """Generate static training pages and downloadable lesson packs. Python stdlib only."""
 from pathlib import Path
 import html,json,re,csv,io
+from datetime import date,timedelta
 ROOT=Path(__file__).resolve().parents[1]
 PUB=ROOT/'public/training';PUB.mkdir(exist_ok=True)
 DATA=json.loads((ROOT/'content/training/lessons.json').read_text())
+def schedule(n):
+ friday=date(2026,10,2)+timedelta(weeks=n-1)
+ lesson=next((d for d in DATA if d['week']==n),None)
+ if lesson and len(lesson['sessions'])==2:
+  return [('A',(friday-timedelta(days=2)).isoformat()+' (수) 15:30~17:30'),('B',friday.isoformat()+' (금) 13:30~15:30')]
+ return [('A',friday.isoformat()+' (금) 13:30~15:30')]
+def schedule_html(n):
+ return '<div class="training-schedule" style="margin:18px 0;padding:16px 20px;background:#edf2e9;border:1px solid #d5dfd2;border-radius:6px;font-size:13px;line-height:1.9"><strong>잠정 교육일정 · 한국시간</strong>'+''.join('<div>'+(''+name+'회차 · ' if len(schedule(n))==2 else '')+when+'</div>' for name,when in schedule(n))+'</div>'
 FIRST=PUB/'week-01.html'
 first=FIRST.read_text()
 CSS=re.search(r'<style>(.*?)</style>',first,re.S).group(1)
@@ -67,10 +76,10 @@ def heading(no,en,title,sub=''):
 def write_pack(d):
  n=d['week'];directory=PUB/'materials'/f'week-{n:02}';directory.mkdir(parents=True,exist_ok=True)
  link=f'materials/week-{n:02}'
- md=[f"# {n}주차 — {d['nav']}", '\n강의안 v1 · 2026-09-27\n',d['lead'],'\n## 학습 목표',*['- '+g for g in d['goals']],'\n## 범위',d['scope'],'\n## 준비 자료',*['- '+k+': '+v for k,v in d['inputs']],'\n## 핵심 개념']
+ md=[f"# {n}주차 — {d['nav']}", '\n강의안 v1 · 2026-09-27\n',d['lead'],'\n## 잠정 교육일정 (한국시간)',*[name+'회차 · '+when for name,when in schedule(n)],'\n## 학습 목표',*['- '+g for g in d['goals']],'\n## 범위',d['scope'],'\n## 준비 자료',*['- '+k+': '+v for k,v in d['inputs']],'\n## 핵심 개념']
  for k,v in d['concepts']:md+=['\n### '+k,v]
  for ss in d['sessions']:
-  md+=['\n## '+ss['name']+'회차 — '+ss['title'],'120분: 소개 10 / 조건 15 / 시연 40 / 변경 실습 35 / 결과 검토 15 / 정리 5']
+  md+=['\n## '+ss['name']+'회차 — '+ss['title'],dict(schedule(n))[ss['name']]+' · 잠정 / 한국시간','120분: 소개 10 / 조건 15 / 시연 40 / 변경 실습 35 / 결과 검토 15 / 정리 5']
   for i,s in enumerate(ss['steps'],1):md+=['\n### '+str(i)+'. '+s['title'],s['why'],*['- '+a for a in s['actions']],'확인: '+s['check']]
   md+=['\n### AI 작업지시',ss['prompt']]
  md+=['\n## 교육용 사례',*d['exercise'],'\n## 자주 발생하는 문제',*['- '+k+': '+v for k,v in d['errors']],'\n## 완료 확인',*['- [ ] '+c for c in d['checks']],'\n## 제출할 결과',*['- '+o for o in d['outputs']],'\n## 공식 참고자료',*['- ['+k+']('+v+')' for k,v in d['references']]]
@@ -83,7 +92,7 @@ def write_pack(d):
  return link
 for d in DATA:
  n=d['week'];total=len(d['sessions'])*120;lk=write_pack(d);titleparts=d['title'].split('\n');title=E(titleparts[0])+'<br><em>'+E(titleparts[1])+'</em>'
- c=f'<div class="hero"><div><div class="eyebrow">WEEK {n:02} / CIVIL 3D × AI</div><h1>{title}</h1><p class="lead">{E(d["lead"])}</p><div class="meta"><span><b>{total}분</b> · {len(d["sessions"])}회차</span><span>설명 · AI 시연 · 변경 실습</span></div><div class="actions"><a class="btn primary" href="#workflow">작업 순서 보기 ↘</a><a class="btn" href="#materials">오늘의 자료 ↓</a></div></div><div class="heroart"><div class="arttop"><span>WEEK {n:02} / STUDY</span><span>CONCEPT</span></div>{diagram(d["diagram"],d["nav"])}<div class="artbottom"><span><i class="legend-dot"></i>{E(d["nav"])}</span><span>설명용 개념도 · 실제 모델 아님</span></div></div></div>'
+ c=schedule_html(n)+f'<div class="hero"><div><div class="eyebrow">WEEK {n:02} / CIVIL 3D × AI</div><h1>{title}</h1><p class="lead">{E(d["lead"])}</p><div class="meta"><span><b>{total}분</b> · {len(d["sessions"])}회차</span><span>설명 · AI 시연 · 변경 실습</span></div><div class="actions"><a class="btn primary" href="#workflow">작업 순서 보기 ↘</a><a class="btn" href="#materials">오늘의 자료 ↓</a></div></div><div class="heroart"><div class="arttop"><span>WEEK {n:02} / STUDY</span><span>CONCEPT</span></div>{diagram(d["diagram"],d["nav"])}<div class="artbottom"><span><i class="legend-dot"></i>{E(d["nav"])}</span><span>설명용 개념도 · 실제 모델 아님</span></div></div></div>'
  c+='<div class="overview">'+''.join(f'<div class="goal"><span class="n">{i:02}</span><div><h3>{E(g)}</h3><p>오늘의 학습 목표</p></div></div>' for i,g in enumerate(d['goals'],1))+'</div>'
  c+='<nav class="sectionnav" aria-label="강의 목차"><a href="#understand">업무 이해</a><a href="#workflow">작업 순서</a><a href="#review">실습·결과 확인</a><a href="#materials">교육자료</a><a href="#results">결과 공유</a></nav>'
  c+='<section id="understand">'+heading('01','UNDERSTAND','먼저 이해할 세 가지','작업을 시작하기 전에 입력과 결과의 관계를 짚습니다.')+'<div class="concepts">'+''.join(f'<article><h3>{E(k)}</h3><p>{E(v)}</p></article>' for k,v in d['concepts'])+'</div>'
@@ -91,7 +100,7 @@ for d in DATA:
  c+=f'<div class="note"><strong>이번 강의의 범위</strong><br>{E(d["scope"])}</div><div class="modelstrip"><span>최초 시연 <b>{E(d["prep"])}</b></span><span>반복 실습 <b>{E(d["repeat"])}</b></span><span>확인된 결과 요약 <b>Luna low</b></span></div><p class="small-note">모델 설정은 권장 시작값입니다. 반복 실습은 검증된 도구·그래프를 재사용하며, 현재 연결에서 지원되지 않는 기능은 실제 프로그램에서 수행하고 결과를 대조합니다.</p></section>'
  c+='<section id="workflow">'+heading('02','WORKFLOW','오늘의 작업 순서','강사 설명 뒤 실제 프로그램에서 실행하고 조건 하나를 바꿔 비교합니다.')
  for ss in d['sessions']:
-  c+=f'<div class="sessionintro" id="session-{ss["name"].lower()}"><div><div class="overline">SESSION {ss["name"]}</div><h3>{E(ss["title"])}</h3><p>소개 10분 · 조건 15분 · 시연 40분 · 변경 실습 35분 · 결과 검토 15분 · 정리 5분</p></div><span class="tag">120분</span></div>'
+  c+=f'<div class="sessionintro" id="session-{ss["name"].lower()}"><div><div class="overline">SESSION {ss["name"]}</div><h3>{E(ss["title"])}</h3><p><strong>{dict(schedule(n))[ss["name"]]} · 잠정 / 한국시간</strong></p><p>소개 10분 · 조건 15분 · 시연 40분 · 변경 실습 35분 · 결과 검토 15분 · 정리 5분</p></div><span class="tag">120분</span></div>'
   for i,s in enumerate(ss['steps'],1):
    c+=f'<div class="step"><div class="stepnum">{i:02}</div><div class="stepbody"><h3>{E(s["title"])}</h3><p>{E(s["why"])}</p><ol>'+''.join('<li>'+E(a)+'</li>' for a in s['actions'])+f'</ol><div class="checkrow">확인 → {E(s["check"])}</div></div></div>'
   pid='prompt-'+ss['name'];c+=f'<div class="promptbox"><div class="prompthead"><span>{ss["name"]}회차 AI 작업지시 · {E(d["prep"])}</span><button data-copy="{pid}" type="button">지시문 복사</button></div><pre id="{pid}">{E(ss["prompt"])}</pre></div><p class="small-note">대괄호 안에는 실제 파일·객체·조건을 넣습니다. 실행 여부와 검증 결과를 함께 기록하세요.</p>'
@@ -111,11 +120,13 @@ first=first.replace('<a class="brand" href="/ko/">','<a class="brand" href="inde
 first=first.replace('<span>교육과정</span>','<a href="index.html">교육과정</a>')
 first=first.replace('강의 화면 샘플 · 내용 검토 중','강의안 v1 · 실습 원본 등록 전')
 if 'data-course-next' not in first:first=first.replace('<footer class="footer">','<div data-course-next style="display:flex;justify-content:space-between;padding-top:25px"><a class="btn" href="index.html">전체 교육과정</a><a class="btn primary" href="week-02.html">02 도로 설계 →</a></div><footer class="footer">')
+first=re.sub(r'<!-- TRAINING SCHEDULE -->.*?<!-- /TRAINING SCHEDULE -->','',first,flags=re.S)
+first=first.replace('<div class="hero">','<!-- TRAINING SCHEDULE -->'+schedule_html(1)+'<!-- /TRAINING SCHEDULE --><div class="hero">',1)
 FIRST.write_text(first)
-intro='<div class="homeintro"><div class="eyebrow">CIVIL 3D × AI / COURSE GUIDE</div><h1>설계의 흐름을 배우고,<br>AI와 함께 완성합니다.</h1><p>항측도면에서 지형·도로·시설물·관망을 만들고,<br>도면과 BIM, 물량으로 연결하는 12주 실무교육입니다.</p></div><div class="overview"><div class="goal"><span class="n">01</span><div><h3>오늘 할 일 확인</h3><p>설명과 작업 순서를 먼저 봅니다.</p></div></div><div class="goal"><span class="n">02</span><div><h3>AI와 실제 작업</h3><p>조건을 바꾸고 결과를 검토합니다.</p></div></div><div class="goal"><span class="n">03</span><div><h3>자료와 결과 공유</h3><p>근거와 변경 내용을 함께 남깁니다.</p></div></div></div><div class="sectionhead" style="margin-top:35px"><div><div class="overline">12 WEEKS / 18 SESSIONS</div><h2>주차별 강의</h2><p>총 36시간 제안 · 일정은 별도 확정 · 실제 실습 모델 등록 전</p></div></div><div class="coursegrid">'
+intro='<div class="homeintro"><div class="eyebrow">CIVIL 3D × AI / COURSE GUIDE</div><h1>설계의 흐름을 배우고,<br>AI와 함께 완성합니다.</h1><p>항측도면에서 지형·도로·시설물·관망을 만들고,<br>도면과 BIM, 물량으로 연결하는 12주 실무교육입니다.</p></div><div class="overview"><div class="goal"><span class="n">01</span><div><h3>오늘 할 일 확인</h3><p>설명과 작업 순서를 먼저 봅니다.</p></div></div><div class="goal"><span class="n">02</span><div><h3>AI와 실제 작업</h3><p>조건을 바꾸고 결과를 검토합니다.</p></div></div><div class="goal"><span class="n">03</span><div><h3>자료와 결과 공유</h3><p>근거와 변경 내용을 함께 남깁니다.</p></div></div></div><div class="sectionhead" style="margin-top:35px"><div><div class="overline">12 WEEKS / 18 SESSIONS</div><h2>주차별 강의</h2><p>총 36시간 · 2026.10.02~12.18 잠정 일정 (한국시간)<br>기본: 금요일 13:30~15:30 / 주 2회: 수요일 15:30~17:30(A), 금요일 13:30~15:30(B)<br>공휴일·사내 일정에 따른 변경은 추후 반영합니다. · 실제 실습 모델 등록 전</p></div></div><div class="coursegrid">'
 for n in range(1,13):
  d=next((v for v in DATA if v['week']==n),None);desc=d['lead'] if d else '항측도면으로 TIN을 만들고 경계·삼각망 오류를 AI와 함께 보완합니다.';hours=len(d['sessions'])*2 if d else 2
- intro+=f'<a class="coursecard" href="{pageurl(n)}"><span class="number">{n:02}</span><h3>{E(NAMES[n])}</h3><p>{E(desc)}</p><div class="bottom"><span>{hours}시간 · '+('A/B 2회차' if hours==4 else '1회차')+'</span><span>강의 보기 ↗</span></div></a>'
+ intro+=f'<a class="coursecard" href="{pageurl(n)}"><span class="number">{n:02}</span><h3>{E(NAMES[n])}</h3><p>{E(desc)}</p>{schedule_html(n)}<div class="bottom"><span>{hours}시간 · '+('A/B 2회차' if hours==4 else '1회차')+'</span><span>강의 보기 ↗</span></div></a>'
 intro+='</div><div class="allmaterials"><h3>실습 자료는 각 강의 페이지에서</h3><p class="resultsnote">강의노트, AI 작업지시, 입력·대조표, 검토·결과 기록표를 제공합니다. 실제 항측도면·DWG·Dynamo·Revit 패밀리와 직원 결과는 교육자료 확정 후 연결합니다.</p><p class="small-note">공통 운영: 최초 작업은 Astra medium, 검증된 반복 작업은 Sol medium, 고정 양식은 Sol low, 확인된 결과 요약은 Luna low를 시작값으로 사용합니다.</p></div>'
 (PUB/'index.html').write_text(wrap('Civil 3D × AI 전체 교육과정',0,intro,True))
 print(f'Generated {len(DATA)} lessons + course home; connected week 1; {len(DATA)*4} downloadable files.')
