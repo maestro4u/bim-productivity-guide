@@ -7,10 +7,13 @@ PUB=ROOT/'public/training';PUB.mkdir(exist_ok=True)
 DATA=json.loads((ROOT/'content/training/lessons.json').read_text())
 def schedule(n):
  friday=date(2026,10,2)+timedelta(weeks=n-1)
+ moved={date(2026,10,9):'한글날',date(2026,10,23):'공동연차',date(2026,11,13):'공동연차'}
+ actual=friday-timedelta(days=1) if friday in moved else friday
+ label=actual.isoformat()+(' (목)' if friday in moved else ' (금)')+' 13:30~15:30'+(' · '+moved[friday]+' 조정' if friday in moved else '')
  lesson=next((d for d in DATA if d['week']==n),None)
  if lesson and len(lesson['sessions'])==2:
-  return [('A',(friday-timedelta(days=2)).isoformat()+' (수) 15:30~17:30'),('B',friday.isoformat()+' (금) 13:30~15:30')]
- return [('A',friday.isoformat()+' (금) 13:30~15:30')]
+  return [('A',(friday-timedelta(days=2)).isoformat()+' (수) 15:30~17:30'),('B',label)]
+ return [('A',label)]
 def schedule_html(n):
  return '<div class="training-schedule" style="margin:18px 0;padding:16px 20px;background:#edf2e9;border:1px solid #d5dfd2;border-radius:6px;font-size:13px;line-height:1.9"><strong>잠정 교육일정 · 한국시간</strong>'+''.join('<div>'+(''+name+'회차 · ' if len(schedule(n))==2 else '')+when+'</div>' for name,when in schedule(n))+'</div>'
 FIRST=PUB/'week-01.html'
@@ -123,7 +126,7 @@ if 'data-course-next' not in first:first=first.replace('<footer class="footer">'
 first=re.sub(r'<!-- TRAINING SCHEDULE -->.*?<!-- /TRAINING SCHEDULE -->','',first,flags=re.S)
 first=first.replace('<div class="hero">','<!-- TRAINING SCHEDULE -->'+schedule_html(1)+'<!-- /TRAINING SCHEDULE --><div class="hero">',1)
 FIRST.write_text(first)
-intro='<div class="homeintro"><div class="eyebrow">CIVIL 3D × AI / COURSE GUIDE</div><h1>설계의 흐름을 배우고,<br>AI와 함께 완성합니다.</h1><p>항측도면에서 지형·도로·시설물·관망을 만들고,<br>도면과 BIM, 물량으로 연결하는 12주 실무교육입니다.</p></div><div class="overview"><div class="goal"><span class="n">01</span><div><h3>오늘 할 일 확인</h3><p>설명과 작업 순서를 먼저 봅니다.</p></div></div><div class="goal"><span class="n">02</span><div><h3>AI와 실제 작업</h3><p>조건을 바꾸고 결과를 검토합니다.</p></div></div><div class="goal"><span class="n">03</span><div><h3>자료와 결과 공유</h3><p>근거와 변경 내용을 함께 남깁니다.</p></div></div></div><div class="sectionhead" style="margin-top:35px"><div><div class="overline">12 WEEKS / 18 SESSIONS</div><h2>주차별 강의</h2><p>총 36시간 · 2026.10.02~12.18 잠정 일정 (한국시간)<br>기본: 금요일 13:30~15:30 / 주 2회: 수요일 15:30~17:30(A), 금요일 13:30~15:30(B)<br>공휴일·사내 일정에 따른 변경은 추후 반영합니다. · 실제 실습 모델 등록 전</p></div></div><div class="coursegrid">'
+intro='<div class="homeintro"><div class="eyebrow">CIVIL 3D × AI / COURSE GUIDE</div><h1>설계의 흐름을 배우고,<br>AI와 함께 완성합니다.</h1><p>항측도면에서 지형·도로·시설물·관망을 만들고,<br>도면과 BIM, 물량으로 연결하는 12주 실무교육입니다.</p></div><div class="overview"><div class="goal"><span class="n">01</span><div><h3>오늘 할 일 확인</h3><p>설명과 작업 순서를 먼저 봅니다.</p></div></div><div class="goal"><span class="n">02</span><div><h3>AI와 실제 작업</h3><p>조건을 바꾸고 결과를 검토합니다.</p></div></div><div class="goal"><span class="n">03</span><div><h3>자료와 결과 공유</h3><p>근거와 변경 내용을 함께 남깁니다.</p></div></div></div><div class="sectionhead" style="margin-top:35px"><div><div class="overline">12 WEEKS / 18 SESSIONS</div><h2>주차별 강의</h2><p>총 36시간 · 2026.10.02~12.18 잠정 일정 (한국시간)<br>기본: 금요일 13:30~15:30 / 주 2회: 수요일 15:30~17:30(A), 금요일 13:30~15:30(B)<br>공휴일·공동연차 조정: 10/08(목), 10/22(목), 11/12(목) 13:30~15:30. · 실제 실습 모델 등록 전</p></div></div><div class="coursegrid">'
 for n in range(1,13):
  d=next((v for v in DATA if v['week']==n),None);desc=d['lead'] if d else '항측도면으로 TIN을 만들고 경계·삼각망 오류를 AI와 함께 보완합니다.';hours=len(d['sessions'])*2 if d else 2
  intro+=f'<a class="coursecard" href="{pageurl(n)}"><span class="number">{n:02}</span><h3>{E(NAMES[n])}</h3><p>{E(desc)}</p>{schedule_html(n)}<div class="bottom"><span>{hours}시간 · '+('A/B 2회차' if hours==4 else '1회차')+'</span><span>강의 보기 ↗</span></div></a>'
